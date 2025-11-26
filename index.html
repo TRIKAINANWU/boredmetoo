@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bored? Me Too. - 3D Printed Fidgets & Toys</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cart-button {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: #667eea;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-button:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            font-weight: 700;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(180deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            color: #999;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-icon {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-name {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-description {
+            color: #999;
+            margin-bottom: 20px;
+            font-size: 1em;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-price {
+            font-size: 2em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 2em;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .cart-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 24px;
+            margin-bottom: 16px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-price {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 50px;
+        }
+
+        .qty-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        .qty-btn:hover {
+            transform: scale(1.1);
+            background: #764ba2;
+        }
+
+        .quantity {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .remove-btn {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            color: #ff4757;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .remove-btn:hover {
+            background: rgba(255, 71, 87, 0.2);
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 2em;
+            font-weight: 800;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #999;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 16px;
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
+        }
+
+        .payment-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 30px 0;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .payment-section h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .venmo-link {
+            display: inline-block;
+            background: #008CFF;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 140, 255, 0.4);
+        }
+
+        .venmo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 140, 255, 0.6);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Bored? Me Too.</div>
+        <button class="cart-button" onclick="openCart()">
+            🛒 Cart <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <div class="hero">
+        <h1>Beat Boredom</h1>
+        <p>Premium 3D printed fidgets, toys, and custom designs to keep your hands busy and your mind engaged</p>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Fidgets</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">⚙️</div>
+                <div class="product-name">Gear Cube</div>
+                <div class="product-description">Mesmerizing mechanical cube with interlocking gears</div>
+                <div class="product-footer">
+                    <div class="product-price">$8</div>
+                    <button class="add-to-cart" onclick="addToCart('Gear Cube', 8)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🔑</div>
+                <div class="product-name">Spiral Keychain</div>
+                <div class="product-description">Compact spiral fidget perfect for your keys</div>
+                <div class="product-footer">
+                    <div class="product-price">$3</div>
+                    <button class="add-to-cart" onclick="addToCart('Spiral Keychain', 3)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🌪️</div>
+                <div class="product-name">Tornado</div>
+                <div class="product-description">Spinning vortex fidget with smooth rotation</div>
+                <div class="product-footer">
+                    <div class="product-price">$8</div>
+                    <button class="add-to-cart" onclick="addToCart('Tornado', 8)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">⚽</div>
+                <div class="product-name">Gear Ball</div>
+                <div class="product-description">Spherical gear mechanism that's oddly satisfying</div>
+                <div class="product-footer">
+                    <div class="product-price">$8</div>
+                    <button class="add-to-cart" onclick="addToCart('Gear Ball', 8)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🌀</div>
+                <div class="product-name">Spiral Cone</div>
+                <div class="product-description">Hypnotic spiral design in a cone shape</div>
+                <div class="product-footer">
+                    <div class="product-price">$8</div>
+                    <button class="add-to-cart" onclick="addToCart('Spiral Cone', 8)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">⭐</div>
+                <div class="product-name">Gear Spinner</div>
+                <div class="product-description">Premium spinner with mechanical gears</div>
+                <div class="product-footer">
+                    <div class="product-price">$8</div>
+                    <button class="add-to-cart" onclick="addToCart('Gear Spinner', 8)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">💆</div>
+                <div class="product-name">Pain Roller</div>
+                <div class="product-description">Satisfying massage roller for stress relief</div>
+                <div class="product-footer">
+                    <div class="product-price">$5</div>
+                    <button class="add-to-cart" onclick="addToCart('Pain Roller', 5)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🦈</div>
+                <div class="product-name">Shark</div>
+                <div class="product-description">Articulated shark with moveable joints</div>
+                <div class="product-footer">
+                    <div class="product-price">$5</div>
+                    <button class="add-to-cart" onclick="addToCart('Shark', 5)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🐉</div>
+                <div class="product-name">Dragon</div>
+                <div class="product-description">Flexible dragon with poseable segments</div>
+                <div class="product-footer">
+                    <div class="product-price">$5</div>
+                    <button class="add-to-cart" onclick="addToCart('Dragon', 5)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🕹️</div>
+                <div class="product-name">Joystick</div>
+                <div class="product-description">Mini joystick fidget for gamers</div>
+                <div class="product-footer">
+                    <div class="product-price">$3</div>
+                    <button class="add-to-cart" onclick="addToCart('Joystick', 3)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 80px;">Toys</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">🎮</div>
+                <div class="product-name">Squid Game's "Gonggi"</div>
+                <div class="product-description">Traditional Korean jacks game from the hit series</div>
+                <div class="product-footer">
+                    <div class="product-price">$10</div>
+                    <button class="add-to-cart" onclick="addToCart('Squid Game\'s Gonggi', 10)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🎲</div>
+                <div class="product-name">Tetris Stack</div>
+                <div class="product-description">Stackable Tetris pieces for endless puzzle fun</div>
+                <div class="product-footer">
+                    <div class="product-price">$10</div>
+                    <button class="add-to-cart" onclick="addToCart('Tetris Stack', 10)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeCart()">×</button>
+            <h2 class="section-title">Your Cart</h2>
+            <div id="cartItems"></div>
+            <div class="button-group">
+                <button class="btn-secondary" onclick="closeCart()">Continue Shopping</button>
+                <button class="btn-primary" onclick="openCheckout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeCheckout()">×</button>
+            <h2 class="section-title">Checkout</h2>
+            
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Shipping Address *</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Order Notes (Optional)</label>
+                    <textarea id="notes" name="notes" placeholder="Any special requests or color preferences?"></textarea>
+                </div>
+
+                <div class="payment-section">
+                    <h3>💳 Payment</h3>
+                    <p style="color: #999; margin-bottom: 10px;"><strong>Total: $<span id="checkoutTotal">0.00</span></strong></p>
+                    <p style="color: #999; margin-bottom: 20px;">Click the button below to pay via Venmo</p>
+                    <a href="https://venmo.com/u/keiranvu" target="_blank" class="venmo-link">
+                        Pay with Venmo
+                    </a>
+                    <p style="color: #999; margin-top: 20px; font-size: 0.9em;">After paying, please include your name in the Venmo note</p>
+                </div>
+
+                <button type="button" class="btn-primary" onclick="completeOrder()">Complete Order</button>
+            </form>
+
+            <button class="btn-secondary" onclick="backToCart()">Back to Cart</button>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeConfirmation()">×</button>
+            <h2 class="section-title">✅ Order Confirmed!</h2>
+            <div id="confirmationDetails" style="background: rgba(102, 126, 234, 0.1); padding: 30px; border-radius: 16px; margin: 20px 0;"></div>
+            <button class="btn-primary" onclick="closeConfirmation()">Done</button>
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-size: 1.2em; font-weight: 700; color: #999;">Bored? Me Too.</p>
+        <p>&copy; 2024 Beat boredom, one print at a time</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function generateOrderNumber() {
+            const timestamp = Date.now();
+            const random = Math.floor(Math.random() * 1000);
+            return `BMT-${timestamp}-${random}`;
+        }
+
+        function completeOrder() {
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const notes = document.getElementById('notes').value.trim();
+            
+            // Validate required fields
+            if (!name || !phone || !email || !address) {
+                alert('Please fill in all required fields!');
+                return;
+            }
+            
+            // Generate order number
+            const orderNumber = generateOrderNumber();
+            
+            // Build order details
+            let orderDetails = `ORDER #${orderNumber}\n`;
+            orderDetails += '='.repeat(50) + '\n\n';
+            orderDetails += 'ITEMS ORDERED:\n\n';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                orderDetails += `${item.name}\n`;
+                orderDetails += `  Quantity: ${item.quantity}\n`;
+                orderDetails += `  Price: ${item.price.toFixed(2)} each\n`;
+                orderDetails += `  Subtotal: ${itemTotal.toFixed(2)}\n\n`;
+            });
+            
+            orderDetails += '='.repeat(50) + '\n';
+            orderDetails += `TOTAL: ${total.toFixed(2)}\n`;
+            orderDetails += '='.repeat(50) + '\n\n';
+            
+            orderDetails += `CUSTOMER INFORMATION:\n`;
+            orderDetails += `Name: ${name}\n`;
+            orderDetails += `Phone: ${phone}\n`;
+            orderDetails += `Email: ${email}\n`;
+            orderDetails += `Shipping Address: ${address}\n`;
+            
+            if (notes) {
+                orderDetails += `\nSpecial Notes: ${notes}\n`;
+            }
+            
+            orderDetails += `\n${'='.repeat(50)}\n`;
+            orderDetails += `Payment Method: Venmo (@keiranvu)\n`;
+            orderDetails += `Order Date: ${new Date().toLocaleString()}\n`;
+            
+            // Create email
+            const subject = encodeURIComponent(`New Order ${orderNumber} - ${name}`);
+            const body = encodeURIComponent(orderDetails);
+            
+            // Show confirmation
+            alert(`Order Confirmed!\n\nYour order number is: ${orderNumber}\n\nPlease save this number for your records.\n\nNext step: Complete payment at venmo.com/u/keiranvu\nInclude "${orderNumber}" in your Venmo payment note.`);
+            
+            // Open email
+            window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+            
+            // Clear cart and close
+            setTimeout(() => {
+                cart = [];
+                updateCartCount();
+                closeCheckout();
+                document.getElementById('checkoutForm').reset();
+            }, 1000);
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            
+            updateCartCount();
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✓ Added!';
+            btn.style.background = '#2ecc71';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+            }, 1200);
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Your cart is empty. Start shopping!</div>';
+                return;
+            }
+            
+            let total = 0;
+            let html = '';
+            
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+            });
+            
+            html += `<div class="cart-total">Total: $${total.toFixed(2)}</div>`;
+            cartItems.innerHTML = html;
+        }
+
+        function changeQuantity(index, change) {
+            cart[index].quantity += change;
+            
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        function openCart() {
+            updateCartDisplay();
+            document.getElementById('cartModal').classList.add('active');
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('active');
+        }
+
+        function openCheckout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('checkoutTotal').textContent = total.toFixed(2);
+            
+            closeCart();
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        function backToCart() {
+            closeCheckout();
+            openCart();
+        }
+
+        function generateOrderNumber() {
+            const timestamp = Date.now();
+            const random = Math.floor(Math.random() * 1000);
+            return `BMT-${timestamp}-${random}`;
+        }
+
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const orderNumber = generateOrderNumber();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('address').value,
+                notes: document.getElementById('notes').value
+            };
+            
+            let orderDetails = `ORDER #${orderNumber}\n`;
+            orderDetails += '='.repeat(50) + '\n\n';
+            orderDetails += 'ITEMS ORDERED:\n\n';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                orderDetails += `${item.name}\n`;
+                orderDetails += `  Quantity: ${item.quantity}\n`;
+                orderDetails += `  Price: ${item.price.toFixed(2)} each\n`;
+                orderDetails += `  Subtotal: ${itemTotal.toFixed(2)}\n\n`;
+            });
+            
+            orderDetails += '='.repeat(50) + '\n';
+            orderDetails += `TOTAL: ${total.toFixed(2)}\n`;
+            orderDetails += '='.repeat(50) + '\n\n';
+            
+            orderDetails += `CUSTOMER INFORMATION:\n`;
+            orderDetails += `Name: ${formData.name}\n`;
+            orderDetails += `Phone: ${formData.phone}\n`;
+            orderDetails += `Email: ${formData.email}\n`;
+            orderDetails += `Shipping Address: ${formData.address}\n`;
+            
+            if (formData.notes) {
+                orderDetails += `\nSpecial Notes: ${formData.notes}\n`;
+            }
+            
+            orderDetails += `\n${'='.repeat(50)}\n`;
+            orderDetails += `Payment Method: Venmo (@keiranvu)\n`;
+            orderDetails += `Order Date: ${new Date().toLocaleString()}\n`;
+            
+            const subject = encodeURIComponent(`🛒 New Order #${orderNumber} - ${formData.name}`);
+            const body = encodeURIComponent(orderDetails);
+            
+            // Show success message with order number
+            alert(`✅ Order Confirmed!\n\nYour order number is: ${orderNumber}\n\nPlease save this number for your records.\n\nNext step: Complete payment at venmo.com/u/keiranvu\nInclude "${orderNumber}" in your Venmo payment note.`);
+            
+            // Open email client
+            window.location.href = 'mailto:your-email@example.com?subject=' + subject + '&body=' + body;
+            
+            // Clear cart and close checkout
+            cart = [];
+            updateCartCount();
+            closeCheckout();
+        });
+    </script>
+</body>
+</html>
