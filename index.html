@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bored? Me Too. - 3D Printed Fidgets & Toys</title>
+    <title>Bored? Me Too. - Premium 3D Printed Fidgets & Toys</title>
+    <meta name="description" content="High-quality 3D printed fidgets and toys. Free shipping on orders over $25. Satisfaction guaranteed.">
     <style>
         * {
             margin: 0;
@@ -38,6 +39,23 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #999;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
         }
 
         .cart-button {
@@ -93,7 +111,23 @@
             font-size: 1.4em;
             color: #999;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 30px;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #667eea;
+            font-weight: 600;
         }
 
         .container {
@@ -107,6 +141,31 @@
             font-weight: 800;
             margin-bottom: 40px;
             text-align: center;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+            color: #667eea;
         }
 
         .product-grid {
@@ -156,6 +215,19 @@
             z-index: 1;
         }
 
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8em;
+            font-weight: 700;
+            z-index: 2;
+        }
+
         .product-name {
             font-size: 1.5em;
             font-weight: 700;
@@ -166,9 +238,17 @@
 
         .product-description {
             color: #999;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-size: 1em;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-specs {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
         }
@@ -341,13 +421,36 @@
             background: rgba(255, 71, 87, 0.2);
         }
 
-        .cart-total {
-            text-align: right;
-            font-size: 2em;
-            font-weight: 800;
+        .cart-summary {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px;
+            border-radius: 16px;
             margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .cart-total {
+            font-size: 1.8em;
+            font-weight: 800;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .shipping-notice {
+            background: rgba(46, 204, 113, 0.1);
+            color: #2ecc71;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 0.9em;
         }
 
         .empty-cart {
@@ -368,7 +471,7 @@
             color: #999;
         }
 
-        input, textarea {
+        input, textarea, select {
             width: 100%;
             padding: 16px;
             background: rgba(255, 255, 255, 0.05);
@@ -379,16 +482,56 @@
             transition: all 0.3s;
         }
 
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: #667eea;
             background: rgba(255, 255, 255, 0.08);
+        }
+
+        select option {
+            background: #1a1a1a;
+            color: #fff;
         }
 
         textarea {
             resize: vertical;
             min-height: 100px;
             font-family: inherit;
+        }
+
+        .checkout-progress {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+        }
+
+        .progress-step.active {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .progress-number {
+            background: rgba(255, 255, 255, 0.1);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .progress-step.active .progress-number {
+            background: #667eea;
+            color: white;
         }
 
         .payment-section {
@@ -438,9 +581,14 @@
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .btn-secondary {
@@ -461,22 +609,130 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        .btn-copy {
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            color: #2ecc71;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-copy:hover {
+            background: rgba(46, 204, 113, 0.2);
+        }
+
         .button-group {
             display: flex;
             gap: 15px;
             margin-top: 30px;
         }
 
+        .order-details-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.8;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 60px 40px;
+            margin-top: 60px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            text-align: center;
+        }
+
+        .info-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .info-card p {
+            color: #999;
+            line-height: 1.8;
+        }
+
+        .faq-section {
+            max-width: 800px;
+            margin: 60px auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .faq-item p {
+            color: #999;
+            line-height: 1.8;
+        }
+
         footer {
             background: rgba(255, 255, 255, 0.03);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            padding: 40px 20px;
+            padding: 60px 40px 40px;
             color: #666;
         }
 
-        footer p {
-            margin: 5px 0;
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #999;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #666;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         @media (max-width: 768px) {
@@ -486,6 +742,10 @@
             
             .navbar {
                 padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
             }
 
             .product-grid {
@@ -503,6 +763,15 @@
 
             .modal-content {
                 padding: 30px 20px;
+            }
+
+            .trust-badges {
+                gap: 20px;
+            }
+
+            .checkout-progress {
+                flex-direction: column;
+                gap: 10px;
             }
         }
 
@@ -527,113 +796,139 @@
 <body>
     <nav class="navbar">
         <div class="logo">Bored? Me Too.</div>
-        <button class="cart-button" onclick="openCart()">
-            🛒 Cart <span class="cart-count" id="cartCount">0</span>
-        </button>
+        <div class="nav-links">
+            <a href="#fidgets">Fidgets</a>
+            <a href="#toys">Toys</a>
+            <a href="#faq">FAQ</a>
+            <button class="cart-button" onclick="openCart()">
+                🛒 Cart <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
     </nav>
 
     <div class="hero">
-        <h1>Beat Boredom</h1>
-        <p>Premium 3D printed fidgets, toys, and custom designs to keep your hands busy and your mind engaged</p>
+        <h1>Beat Boredom, One Print at a Time</h1>
+        <p>High-quality 3D printed fidgets and toys made with premium PLA material. Each piece is printed to order with precision and care.</p>
+        
+        <div class="trust-badges">
+            <div class="trust-badge">
+                ✓ 7-10 Day Delivery
+            </div>
+            <div class="trust-badge">
+                ✓ Satisfaction Guaranteed
+            </div>
+            <div class="trust-badge">
+                ✓ Premium Quality PLA
+            </div>
+        </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="fidgets">
         <h2 class="section-title">Fidgets</h2>
-        <div class="product-grid">
-            <div class="product-card">
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+            <button class="filter-btn" onclick="filterProducts('under5')">Under $5</button>
+            <button class="filter-btn" onclick="filterProducts('5to10')">$5 - $10</button>
+        </div>
+
+        <div class="product-grid" id="fidgetGrid">
+            <div class="product-card" data-price="8">
                 <div class="product-icon">⚙️</div>
                 <div class="product-name">Gear Cube</div>
-                <div class="product-description">Mesmerizing mechanical cube with interlocking gears</div>
+                <div class="product-description">Mesmerizing mechanical cube with interlocking gears that rotate smoothly together</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Gear Cube', 8)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="3">
+                <div class="product-badge">Popular</div>
                 <div class="product-icon">🔑</div>
                 <div class="product-name">Spiral Keychain</div>
-                <div class="product-description">Compact spiral fidget perfect for your keys</div>
+                <div class="product-description">Compact spiral fidget perfect for your keys - satisfying texture and endless spinning</div>
                 <div class="product-footer">
                     <div class="product-price">$3</div>
                     <button class="add-to-cart" onclick="addToCart('Spiral Keychain', 3)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="8">
                 <div class="product-icon">🌪️</div>
                 <div class="product-name">Tornado</div>
-                <div class="product-description">Spinning vortex fidget with smooth rotation</div>
+                <div class="product-description">Spinning vortex fidget with ultra-smooth rotation and mesmerizing motion</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Tornado', 8)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="8">
                 <div class="product-icon">⚽</div>
                 <div class="product-name">Gear Ball</div>
-                <div class="product-description">Spherical gear mechanism that's oddly satisfying</div>
+                <div class="product-description">Spherical gear mechanism that's oddly satisfying to manipulate and display</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Gear Ball', 8)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="8">
                 <div class="product-icon">🌀</div>
                 <div class="product-name">Spiral Cone</div>
-                <div class="product-description">Hypnotic spiral design in a cone shape</div>
+                <div class="product-description">Hypnotic spiral design in a cone shape - perfect desk ornament and fidget</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Spiral Cone', 8)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="8">
                 <div class="product-icon">⭐</div>
                 <div class="product-name">Gear Spinner</div>
-                <div class="product-description">Premium spinner with mechanical gears</div>
+                <div class="product-description">Premium spinner with visible mechanical gears and extended spin time</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Gear Spinner', 8)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="5">
                 <div class="product-icon">💆</div>
                 <div class="product-name">Pain Roller</div>
-                <div class="product-description">Satisfying massage roller for stress relief</div>
+                <div class="product-description">Satisfying massage roller for stress relief - great for hands, arms, and neck</div>
                 <div class="product-footer">
                     <div class="product-price">$5</div>
                     <button class="add-to-cart" onclick="addToCart('Pain Roller', 5)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="5">
+                <div class="product-badge">Best Seller</div>
                 <div class="product-icon">🦈</div>
                 <div class="product-name">Shark</div>
-                <div class="product-description">Articulated shark with moveable joints</div>
+                <div class="product-description">Articulated shark with moveable joints - fun to pose and fidget with</div>
                 <div class="product-footer">
                     <div class="product-price">$5</div>
                     <button class="add-to-cart" onclick="addToCart('Shark', 5)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="5">
                 <div class="product-icon">🐉</div>
                 <div class="product-name">Dragon</div>
-                <div class="product-description">Flexible dragon with poseable segments</div>
+                <div class="product-description">Flexible dragon with poseable segments - makes a great desk companion</div>
                 <div class="product-footer">
                     <div class="product-price">$5</div>
                     <button class="add-to-cart" onclick="addToCart('Dragon', 5)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="3">
                 <div class="product-icon">🕹️</div>
                 <div class="product-name">Joystick</div>
-                <div class="product-description">Mini joystick fidget for gamers</div>
+                <div class="product-description">Mini joystick fidget for gamers - clicks and moves just like the real thing</div>
                 <div class="product-footer">
                     <div class="product-price">$3</div>
                     <button class="add-to-cart" onclick="addToCart('Joystick', 3)">Add to Cart</button>
@@ -641,27 +936,87 @@
             </div>
         </div>
 
-        <h2 class="section-title" style="margin-top: 80px;">Toys</h2>
-        <div class="product-grid">
-            <div class="product-card">
+        <h2 class="section-title" style="margin-top: 80px;" id="toys">Toys</h2>
+        <div class="product-grid" id="toysGrid">
+            <div class="product-card" data-price="10">
                 <div class="product-icon">🎮</div>
                 <div class="product-name">Squid Game's "Gonggi"</div>
-                <div class="product-description">Traditional Korean jacks game from the hit series</div>
+                <div class="product-description">Traditional Korean jacks game from the hit series - complete set with instructions</div>
                 <div class="product-footer">
                     <div class="product-price">$10</div>
                     <button class="add-to-cart" onclick="addToCart('Squid Game\'s Gonggi', 10)">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-price="10">
                 <div class="product-icon">🎲</div>
                 <div class="product-name">Tetris Stack</div>
-                <div class="product-description">Stackable Tetris pieces for endless puzzle fun</div>
+                <div class="product-description">Stackable Tetris pieces for endless puzzle fun - 7 classic shapes in classic colors</div>
                 <div class="product-footer">
                     <div class="product-price">$10</div>
                     <button class="add-to-cart" onclick="addToCart('Tetris Stack', 10)">Add to Cart</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our 3D Prints?</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🏆 Quality Materials</h3>
+                    <p>All products are printed with premium PLA filament, ensuring durability, smooth finish, and vibrant colors that last.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🎨 Custom Colors</h3>
+                    <p>Choose from our available colors: Red-Black, Burnt Titanium, Twinkling Silver, Red, Black, Blue, Yellow, Green, Purple, Rainbow, Chief's Red-Yellow, Blue-Green, Copper-Purple-Green, White, Grey, and Orange. Request your color preference in the order notes!</p>
+                    <p style="margin-top: 10px; font-size: 0.85em; color: #999;">*Note: Rainbow prints may vary in color pattern with each print</p>
+                </div>
+                <div class="info-card">
+                    <h3>📦 Fast Shipping</h3>
+                    <p>Orders ship within 2-3 business days. Expect delivery in 7-10 days total. Free shipping on orders over $25!</p>
+                </div>
+                <div class="info-card">
+                    <h3>💯 Satisfaction Guarantee</h3>
+                    <p>Not happy? We'll make it right. 30-day return policy on all products. Your satisfaction is our priority.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container faq-section" id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <h3>How long will my order take?</h3>
+            <p>Orders are printed and shipped within 2-3 business days. Total delivery time is typically 7-10 days depending on your location.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What colors are available?</h3>
+            <p>We offer the following colors: <strong>Red-Black, Burnt Titanium, Twinkling Silver, Red, Black, Blue, Yellow, Green, Purple, Rainbow, Chief's Red-Yellow, Blue-Green, Copper-Purple-Green, White, Grey, and Orange</strong>. Just leave a note with your color preference at checkout.</p>
+            <p style="margin-top: 10px; font-style: italic; color: #999;">*Please note: Rainbow filament produces unique color patterns with each print, so your item may not look identical to others.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Can I return or exchange items?</h3>
+            <p>Yes! We offer a 30-day return/exchange policy. If you're not satisfied with your purchase, contact us and we'll make it right.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>How do I care for my 3D printed items?</h3>
+            <p>PLA is durable but should be kept away from extreme heat (don't leave in hot cars). Clean with mild soap and water. Avoid dishwashers and harsh chemicals.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Do you take custom orders?</h3>
+            <p>Absolutely! Contact us at <a href="mailto:boredmet2@gmail.com" style="color: #667eea;">boredmet2@gmail.com</a> to discuss custom designs, bulk orders, or special requests.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What payment methods do you accept?</h3>
+            <p>We currently accept payments via Venmo. After placing your order, you'll receive payment instructions with your order number.</p>
         </div>
     </div>
 
@@ -673,7 +1028,7 @@
             <div id="cartItems"></div>
             <div class="button-group">
                 <button class="btn-secondary" onclick="closeCart()">Continue Shopping</button>
-                <button class="btn-primary" onclick="openCheckout()">Checkout</button>
+                <button class="btn-primary" onclick="openCheckout()">Proceed to Checkout</button>
             </div>
         </div>
     </div>
@@ -684,43 +1039,95 @@
             <button class="close-modal" onclick="closeCheckout()">×</button>
             <h2 class="section-title">Checkout</h2>
             
+            <div class="checkout-progress">
+                <div class="progress-step active">
+                    <span class="progress-number">1</span>
+                    <span>Information</span>
+                </div>
+                <div class="progress-step">
+                    <span class="progress-number">2</span>
+                    <span>Payment</span>
+                </div>
+                <div class="progress-step">
+                    <span class="progress-number">3</span>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+
             <form id="checkoutForm">
                 <div class="form-group">
                     <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" required placeholder="John Doe">
                 </div>
 
                 <div class="form-group">
                     <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="color">Color Preference *</label>
+                    <select id="color" name="color" required>
+                        <option value="">Select a color...</option>
+                        <option value="Red-Black">Red-Black</option>
+                        <option value="Burnt Titanium">Burnt Titanium</option>
+                        <option value="Twinkling Silver">Twinkling Silver</option>
+                        <option value="Red">Red</option>
+                        <option value="Black">Black</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Green">Green</option>
+                        <option value="Purple">Purple</option>
+                        <option value="Rainbow">Rainbow (varies each print)</option>
+                        <option value="Chief's Red-Yellow">Chief's Red-Yellow</option>
+                        <option value="Blue-Green">Blue-Green</option>
+                        <option value="Copper-Purple-Green">Copper-Purple-Green</option>
+                        <option value="White">White</option>
+                        <option value="Grey">Grey</option>
+                        <option value="Orange">Orange</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for="address">Shipping Address *</label>
-                    <textarea id="address" name="address" required></textarea>
+                    <textarea id="address" name="address" required placeholder="123 Main St&#10;City, State, ZIP"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="notes">Order Notes (Optional)</label>
-                    <textarea id="notes" name="notes" placeholder="Any special requests or color preferences?"></textarea>
+                    <label for="notes">Additional Notes (Optional)</label>
+                    <textarea id="notes" name="notes" placeholder="Any special requests?"></textarea>
                 </div>
 
                 <div class="payment-section">
-                    <h3>💳 Payment</h3>
-                    <p style="color: #999; margin-bottom: 10px;"><strong>Total: $<span id="checkoutTotal">0.00</span></strong></p>
-                    <p style="color: #999; margin-bottom: 20px;">Click the button below to pay via Venmo</p>
-                    <a href="https://venmo.com/u/keiranvu" target="_blank" class="venmo-link">
-                        Pay with Venmo
-                    </a>
-                    <p style="color: #999; margin-top: 20px; font-size: 0.9em;">After paying, please include your name in the Venmo note</p>
+                    <h3>💳 Order Summary</h3>
+                    <div style="text-align: left; margin: 20px 0;">
+                        <div id="checkoutItemsList"></div>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Subtotal:</span>
+                        <span>$<span id="checkoutSubtotal">0.00</span></span>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Shipping:</span>
+                        <span id="shippingCost">$5.00</span>
+                    </div>
+                    <div class="cart-total">
+                        <div class="cart-summary-row">
+                            <span>Total:</span>
+                            <span>$<span id="checkoutTotal">0.00</span></span>
+                        </div>
+                    </div>
+                    <div id="freeShippingNotice" class="shipping-notice" style="display: none;">
+                        🎉 Free shipping applied!
+                    </div>
                 </div>
 
-                <button type="button" class="btn-primary" onclick="completeOrder()">Complete Order</button>
+                <button type="submit" class="btn-primary">Place Order</button>
             </form>
 
             <button class="btn-secondary" onclick="backToCart()">Back to Cart</button>
@@ -732,92 +1139,101 @@
         <div class="modal-content">
             <button class="close-modal" onclick="closeConfirmation()">×</button>
             <h2 class="section-title">✅ Order Confirmed!</h2>
-            <div id="confirmationDetails" style="background: rgba(102, 126, 234, 0.1); padding: 30px; border-radius: 16px; margin: 20px 0;"></div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <p style="font-size: 1.2em; color: #999; margin-bottom: 20px;">
+                    Thank you for your order! Please complete the following steps:
+                </p>
+            </div>
+
+            <div class="payment-section">
+                <h3>📋 Your Order Number</h3>
+                <div style="font-size: 2em; font-weight: 800; margin: 20px 0; color: #667eea; font-family: 'Courier New', monospace;" id="displayOrderNumber"></div>
+                <p style="color: #999; margin-bottom: 20px;">Save this number for your records!</p>
+                <button class="btn-copy" onclick="copyOrderNumber()">📋 Copy Order Number</button>
+            </div>
+
+            <div class="order-details-box" id="orderDetailsBox"></div>
+
+            <div class="payment-section">
+                <h3>💰 Next Step: Complete Payment</h3>
+                <p style="color: #999; margin-bottom: 10px;"><strong>Amount Due: $<span id="finalTotal">0.00</span></strong></p>
+                <p style="color: #999; margin-bottom: 20px;">
+                    Click below to pay via Venmo. <strong>Include your order number in the payment note.</strong>
+                </p>
+                <a href="https://venmo.com/u/keiranvu" target="_blank" class="venmo-link">
+                    Pay with Venmo →
+                </a>
+                <button class="btn-copy" onclick="copyOrderDetails()" style="margin-top: 15px;">📋 Copy Full Order Details</button>
+            </div>
+
+            <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; margin: 20px 0;">
+                <h3 style="margin-bottom: 15px;">📧 Email Confirmation</h3>
+                <p style="color: #999;">
+                    Your order details have been sent to: <strong id="customerEmail"></strong>
+                    <br><br>
+                    Expected delivery: <strong>7-10 business days</strong>
+                </p>
+            </div>
+
             <button class="btn-primary" onclick="closeConfirmation()">Done</button>
         </div>
     </div>
 
     <footer>
-        <p style="font-size: 1.2em; font-weight: 700; color: #999;">Bored? Me Too.</p>
-        <p>&copy; 2024 Beat boredom, one print at a time</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bored? Me Too.</h3>
+                <p>Premium 3D printed fidgets and toys designed to beat boredom and spark creativity.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#fidgets">Shop Fidgets</a>
+                <a href="#toys">Shop Toys</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <p>Email: <a href="mailto:boredmet2@gmail.com">boredmet2@gmail.com</a></p>
+                <p>Response time: Within 24 hours</p>
+                <p>Returns: 30-day policy</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <a href="#" onclick="showShippingPolicy(); return false;">Shipping Policy</a>
+                <a href="#" onclick="showReturnPolicy(); return false;">Return Policy</a>
+                <a href="#" onclick="showPrivacyPolicy(); return false;">Privacy Policy</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p style="font-size: 1.2em; font-weight: 700; color: #999; margin-bottom: 10px;">Bored? Me Too.</p>
+            <p>&copy; 2024 Beat boredom, one print at a time. All rights reserved.</p>
+        </div>
     </footer>
 
-    <script>
-        let cart = [];
+    <!-- Policy Modal -->
+    <div class="modal" id="policyModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closePolicyModal()">×</button>
+            <div id="policyContent"></div>
+            <button class="btn-secondary" onclick="closePolicyModal()">Close</button>
+        </div>
+    </div>
 
-        function generateOrderNumber() {
-            const timestamp = Date.now();
-            const random = Math.floor(Math.random() * 1000);
-            return `BMT-${timestamp}-${random}`;
-        }
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Initialize cart from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let currentOrderNumber = '';
+        let currentOrderDetails = '';
 
-        function completeOrder() {
-            // Get form values
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const address = document.getElementById('address').value.trim();
-            const notes = document.getElementById('notes').value.trim();
-            
-            // Validate required fields
-            if (!name || !phone || !email || !address) {
-                alert('Please fill in all required fields!');
-                return;
-            }
-            
-            // Generate order number
-            const orderNumber = generateOrderNumber();
-            
-            // Build order details
-            let orderDetails = `ORDER #${orderNumber}\n`;
-            orderDetails += '='.repeat(50) + '\n\n';
-            orderDetails += 'ITEMS ORDERED:\n\n';
-            let total = 0;
-            
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                orderDetails += `${item.name}\n`;
-                orderDetails += `  Quantity: ${item.quantity}\n`;
-                orderDetails += `  Price: ${item.price.toFixed(2)} each\n`;
-                orderDetails += `  Subtotal: ${itemTotal.toFixed(2)}\n\n`;
-            });
-            
-            orderDetails += '='.repeat(50) + '\n';
-            orderDetails += `TOTAL: ${total.toFixed(2)}\n`;
-            orderDetails += '='.repeat(50) + '\n\n';
-            
-            orderDetails += `CUSTOMER INFORMATION:\n`;
-            orderDetails += `Name: ${name}\n`;
-            orderDetails += `Phone: ${phone}\n`;
-            orderDetails += `Email: ${email}\n`;
-            orderDetails += `Shipping Address: ${address}\n`;
-            
-            if (notes) {
-                orderDetails += `\nSpecial Notes: ${notes}\n`;
-            }
-            
-            orderDetails += `\n${'='.repeat(50)}\n`;
-            orderDetails += `Payment Method: Venmo (@keiranvu)\n`;
-            orderDetails += `Order Date: ${new Date().toLocaleString()}\n`;
-            
-            // Create email
-            const subject = encodeURIComponent(`New Order ${orderNumber} - ${name}`);
-            const body = encodeURIComponent(orderDetails);
-            
-            // Show confirmation
-            alert(`Order Confirmed!\n\nYour order number is: ${orderNumber}\n\nPlease save this number for your records.\n\nNext step: Complete payment at venmo.com/u/keiranvu\nInclude "${orderNumber}" in your Venmo payment note.`);
-            
-            // Open email
-            window.location.href = `mailto:keiran.vu.tri@gmail.com?subject=${subject}&body=${body}`;
-            
-            // Clear cart and close
-            setTimeout(() => {
-                cart = [];
-                updateCartCount();
-                closeCheckout();
-                document.getElementById('checkoutForm').reset();
-            }, 1000);
+        // Save cart to localStorage whenever it changes
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
         }
 
         function updateCartCount() {
@@ -834,8 +1250,9 @@
                 cart.push({ name, price, quantity: 1 });
             }
             
-            updateCartCount();
+            saveCart();
             
+            // Visual feedback
             const btn = event.target;
             const originalText = btn.textContent;
             btn.textContent = '✓ Added!';
@@ -854,11 +1271,11 @@
                 return;
             }
             
-            let total = 0;
+            let subtotal = 0;
             let html = '';
             
             cart.forEach((item, index) => {
-                total += item.price * item.quantity;
+                subtotal += item.price * item.quantity;
                 html += `
                     <div class="cart-item">
                         <div class="cart-item-info">
@@ -875,7 +1292,28 @@
                 `;
             });
             
-            html += `<div class="cart-total">Total: $${total.toFixed(2)}</div>`;
+            const shipping = 5;
+            const total = subtotal + shipping;
+            
+            html += `
+                <div class="cart-summary">
+                    <div class="cart-summary-row">
+                        <span>Subtotal:</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Shipping:</span>
+                        <span>$${shipping.toFixed(2)}</span>
+                    </div>
+                    <div class="cart-total">
+                        <div class="cart-summary-row">
+                            <span>Total:</span>
+                            <span>$${total.toFixed(2)}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
             cartItems.innerHTML = html;
         }
 
@@ -886,13 +1324,13 @@
                 cart.splice(index, 1);
             }
             
-            updateCartCount();
+            saveCart();
             updateCartDisplay();
         }
 
         function removeFromCart(index) {
             cart.splice(index, 1);
-            updateCartCount();
+            saveCart();
             updateCartDisplay();
         }
 
@@ -911,8 +1349,30 @@
                 return;
             }
             
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            // Calculate totals
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = 5;
+            const total = subtotal + shipping;
+            
+            // Update checkout display
+            document.getElementById('checkoutSubtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('shippingCost').textContent = '$' + shipping.toFixed(2);
             document.getElementById('checkoutTotal').textContent = total.toFixed(2);
+            
+            // Hide free shipping notice
+            document.getElementById('freeShippingNotice').style.display = 'none';
+            
+            // Display items in checkout
+            let itemsHTML = '';
+            cart.forEach(item => {
+                itemsHTML += `
+                    <div class="cart-summary-row" style="margin-bottom: 8px;">
+                        <span>${item.name} × ${item.quantity}</span>
+                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('checkoutItemsList').innerHTML = itemsHTML;
             
             closeCart();
             document.getElementById('checkoutModal').classList.add('active');
@@ -933,65 +1393,273 @@
             return `BMT-${timestamp}-${random}`;
         }
 
-        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        function copyOrderNumber() {
+            navigator.clipboard.writeText(currentOrderNumber).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        function copyOrderDetails() {
+            navigator.clipboard.writeText(currentOrderDetails).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        // Handle form submission
+        async function handleCheckoutSubmit(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
             
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const color = document.getElementById('color').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const notes = document.getElementById('notes').value.trim();
+            
+            // Validate
+            if (!name || !phone || !email || !color || !address) {
+                alert('Please fill in all required fields!');
+                return false;
+            }
+            
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address!');
+                return false;
+            }
+            
+            // Generate order number
             const orderNumber = generateOrderNumber();
+            currentOrderNumber = orderNumber;
             
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                address: document.getElementById('address').value,
-                notes: document.getElementById('notes').value
-            };
+            // Calculate totals
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = 5;
+            const total = subtotal + shipping;
             
+            // Build order details
             let orderDetails = `ORDER #${orderNumber}\n`;
             orderDetails += '='.repeat(50) + '\n\n';
             orderDetails += 'ITEMS ORDERED:\n\n';
-            let total = 0;
             
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
-                total += itemTotal;
                 orderDetails += `${item.name}\n`;
                 orderDetails += `  Quantity: ${item.quantity}\n`;
-                orderDetails += `  Price: ${item.price.toFixed(2)} each\n`;
-                orderDetails += `  Subtotal: ${itemTotal.toFixed(2)}\n\n`;
+                orderDetails += `  Price: $${item.price.toFixed(2)} each\n`;
+                orderDetails += `  Subtotal: $${itemTotal.toFixed(2)}\n\n`;
             });
             
             orderDetails += '='.repeat(50) + '\n';
-            orderDetails += `TOTAL: ${total.toFixed(2)}\n`;
+            orderDetails += `Subtotal: $${subtotal.toFixed(2)}\n`;
+            orderDetails += `Shipping: $${shipping.toFixed(2)}\n`;
+            orderDetails += `TOTAL: $${total.toFixed(2)}\n`;
             orderDetails += '='.repeat(50) + '\n\n';
             
             orderDetails += `CUSTOMER INFORMATION:\n`;
-            orderDetails += `Name: ${formData.name}\n`;
-            orderDetails += `Phone: ${formData.phone}\n`;
-            orderDetails += `Email: ${formData.email}\n`;
-            orderDetails += `Shipping Address: ${formData.address}\n`;
+            orderDetails += `Name: ${name}\n`;
+            orderDetails += `Phone: ${phone}\n`;
+            orderDetails += `Email: ${email}\n`;
+            orderDetails += `Color Preference: ${color}\n`;
+            orderDetails += `Shipping Address:\n${address}\n`;
             
-            if (formData.notes) {
-                orderDetails += `\nSpecial Notes: ${formData.notes}\n`;
+            if (notes) {
+                orderDetails += `\nAdditional Notes:\n${notes}\n`;
             }
             
             orderDetails += `\n${'='.repeat(50)}\n`;
             orderDetails += `Payment Method: Venmo (@keiranvu)\n`;
             orderDetails += `Order Date: ${new Date().toLocaleString()}\n`;
+            orderDetails += `Expected Delivery: 7-10 business days\n`;
             
-            const subject = encodeURIComponent(`🛒 New Order #${orderNumber} - ${formData.name}`);
-            const body = encodeURIComponent(orderDetails);
+            currentOrderDetails = orderDetails;
             
-            // Show success message with order number
-            alert(`✅ Order Confirmed!\n\nYour order number is: ${orderNumber}\n\nPlease save this number for your records.\n\nNext step: Complete payment at venmo.com/u/keiranvu\nInclude "${orderNumber}" in your Venmo payment note.`);
+            // Disable submit button while processing
+            const submitBtn = document.querySelector('#checkoutForm button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing Order...';
             
-            // Open email client
-            window.location.href = 'mailto:keiran.vu.tri@gmail.com?subject=' + subject + '&body=' + body;
+            try {
+                // Send order via Formspree
+                const formData = new FormData();
+                formData.append('order_number', orderNumber);
+                formData.append('customer_name', name);
+                formData.append('customer_phone', phone);
+                formData.append('customer_email', email);
+                formData.append('color_preference', color);
+                formData.append('shipping_address', address);
+                formData.append('additional_notes', notes);
+                formData.append('order_details', orderDetails);
+                formData.append('subtotal', subtotal.toFixed(2));
+                formData.append('shipping', shipping.toFixed(2));
+                formData.append('total', total.toFixed(2));
+                
+                const response = await fetch('https://formspree.io/f/mldyeqal', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Update confirmation modal
+                    document.getElementById('displayOrderNumber').textContent = orderNumber;
+                    document.getElementById('finalTotal').textContent = total.toFixed(2);
+                    document.getElementById('customerEmail').textContent = email;
+                    document.getElementById('orderDetailsBox').innerHTML = `<pre style="white-space: pre-wrap; word-wrap: break-word;">${orderDetails}</pre>`;
+                    
+                    // Close checkout and show confirmation
+                    closeCheckout();
+                    document.getElementById('confirmationModal').classList.add('active');
+                    
+                    // Clear form
+                    document.getElementById('checkoutForm').reset();
+                } else {
+                    throw new Error('Failed to submit order');
+                }
+            } catch (error) {
+                console.error('Error submitting order:', error);
+                alert('There was an error submitting your order. Please try again or contact us at boredmet2@gmail.com');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Place Order';
+                return false;
+            }
             
-            // Clear cart and close checkout
+            // Re-enable button
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Place Order';
+            
+            return false;
+        }
+        
+        // Attach event listener
+        document.getElementById('checkoutForm').addEventListener('submit', handleCheckoutSubmit);
+
+        function closeConfirmation() {
+            document.getElementById('confirmationModal').classList.remove('active');
+            
+            // Clear cart after confirmation
             cart = [];
-            updateCartCount();
-            closeCheckout();
-        });
+            saveCart();
+        }
+
+        // Filter products
+        function filterProducts(filter) {
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter products
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const price = parseFloat(card.dataset.price);
+                let show = true;
+                
+                if (filter === 'under5' && price >= 5) show = false;
+                if (filter === '5to10' && (price < 5 || price > 10)) show = false;
+                
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+
+        // Policy functions
+        function showShippingPolicy() {
+            document.getElementById('policyContent').innerHTML = `
+                <h2 class="section-title">Shipping Policy</h2>
+                <div class="faq-item">
+                    <h3>Processing Time</h3>
+                    <p>All orders are printed to order and typically ship within 2-3 business days.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Delivery Time</h3>
+                    <p>Expected delivery is 7-10 business days from order placement. You'll receive tracking information once your order ships.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Shipping Costs</h3>
+                    <p>Standard shipping is $5.00 for all orders.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>International Shipping</h3>
+                    <p>Currently, we only ship within the United States. International shipping coming soon!</p>
+                </div>
+            `;
+            document.getElementById('policyModal').classList.add('active');
+        }
+
+        function showReturnPolicy() {
+            document.getElementById('policyContent').innerHTML = `
+                <h2 class="section-title">Return & Exchange Policy</h2>
+                <div class="faq-item">
+                    <h3>30-Day Guarantee</h3>
+                    <p>We offer a 30-day return or exchange policy on all products. If you're not satisfied, we'll make it right.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Return Process</h3>
+                    <p>Contact us at <a href="mailto:boredmet2@gmail.com" style="color: #667eea;">boredmet2@gmail.com</a> with your order number and reason for return. We'll provide return instructions.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Defective Items</h3>
+                    <p>If you receive a defective item, contact us immediately. We'll send a replacement at no cost to you.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Refunds</h3>
+                    <p>Refunds are processed within 5-7 business days of receiving the returned item.</p>
+                </div>
+            `;
+            document.getElementById('policyModal').classList.add('active');
+        }
+
+        function showPrivacyPolicy() {
+            document.getElementById('policyContent').innerHTML = `
+                <h2 class="section-title">Privacy Policy</h2>
+                <div class="faq-item">
+                    <h3>Information We Collect</h3>
+                    <p>We collect name, email, phone number, and shipping address solely for order fulfillment and customer service.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How We Use Your Information</h3>
+                    <p>Your information is used exclusively to process orders, provide shipping updates, and respond to customer inquiries.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Data Security</h3>
+                    <p>We never share, sell, or distribute your personal information to third parties. Your data is stored securely.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Cookies</h3>
+                    <p>We use localStorage to save your cart between sessions. No tracking cookies are used.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Contact</h3>
+                    <p>Questions about privacy? Email us at <a href="mailto:boredmet2@gmail.com" style="color: #667eea;">boredmet2@gmail.com</a></p>
+                </div>
+            `;
+            document.getElementById('policyModal').classList.add('active');
+        }
+
+        function closePolicyModal() {
+            document.getElementById('policyModal').classList.remove('active');
+        }
+
+        // Initialize cart count on page load
+        updateCartCount();
     </script>
 </body>
 </html>
