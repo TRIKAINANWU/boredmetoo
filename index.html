@@ -684,74 +684,48 @@
             <button class="close-modal" onclick="closeCheckout()">×</button>
             <h2 class="section-title">Checkout</h2>
             
-            ...
-<form id="checkoutForm" action="https://formspree.io/f/{mldyeqal}" method="POST">
-    <div class="form-group">
-        <label for="name">Full Name *</label>
-        <input type="text" id="name" name="name" required>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Shipping Address *</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Order Notes (Optional)</label>
+                    <textarea id="notes" name="notes" placeholder="Any special requests or color preferences?"></textarea>
+                </div>
+
+                <div class="payment-section">
+                    <h3>💳 Payment</h3>
+                    <p style="color: #999; margin-bottom: 10px;"><strong>Total: $<span id="checkoutTotal">0.00</span></strong></p>
+                    <p style="color: #999; margin-bottom: 20px;">Click the button below to pay via Venmo</p>
+                    <a href="https://venmo.com/u/keiranvu" target="_blank" class="venmo-link">
+                        Pay with Venmo
+                    </a>
+                    <p style="color: #999; margin-top: 20px; font-size: 0.9em;">After paying, please include your name in the Venmo note</p>
+                </div>
+
+                <button type="button" class="btn-primary" onclick="completeOrder()">Complete Order</button>
+            </form>
+
+            <button class="btn-secondary" onclick="backToCart()">Back to Cart</button>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="phone">Phone Number *</label>
-        <input type="tel" id="phone" name="phone" required>
-    </div>
-
-    <div class="form-group">
-        <label for="email">Email Address *</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-
-    <div class="form-group">
-        <label for="address">Shipping Address *</label>
-        <textarea id="address" name="address" required></textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="notes">Order Notes (Optional)</label>
-        <textarea id="notes" name="notes" placeholder="Any special requests or color preferences?"></textarea>
-    </div>
-
-    <!-- Include cart summary in a hidden field -->
-    <input type="hidden" id="cart_summary" name="cart_summary">
-
-    <div class="payment-section">
-        <h3>💳 Payment</h3>
-        <p style="color: #999; margin-bottom: 10px;"><strong>Total: $<span id="checkoutTotal">0.00</span></strong></p>
-        <p style="color: #999; margin-bottom: 20px;">Click the button below to pay via Venmo</p>
-        <a href="https://venmo.com/u/keiranvu" target="_blank" class="venmo-link">
-            Pay with Venmo
-        </a>
-        <p style="color: #999; margin-top: 20px; font-size: 0.9em;">After paying, please include your name in the Venmo note</p>
-    </div>
-
-    <button type="submit" class="btn-primary">Complete Order</button>
-</form>
-...
-<script>
-    // Everything else remains the same, except the completeOrder() and form submission handler!
-    let cart = [];
-    //... your cart code ...
-
-    // Instead of submitting via mailto, inject the cart summary before the Formspree POST
-    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-        // Build up cart summary for Formspree
-        let cartSummary = '';
-        let total = 0;
-        cart.forEach(item => {
-            let itemTotal = item.price * item.quantity;
-            total += itemTotal;
-            cartSummary += `${item.name}\n  Quantity: ${item.quantity}\n  Price: $${item.price.toFixed(2)} each\n  Subtotal: $${itemTotal.toFixed(2)}\n\n`;
-        });
-        cartSummary += `Total: $${total.toFixed(2)}\n`;
-        document.getElementById('cart_summary').value = cartSummary;
-
-        // Let the form submit normally to Formspree – no preventDefault!
-        // Optionally empty the cart after form submit (wait for success page)
-        setTimeout(() => {
-            cart = [];
-            updateCartCount();
-        }, 1000);
-    });
 
     <!-- Order Confirmation Modal -->
     <div class="modal" id="confirmationModal">
