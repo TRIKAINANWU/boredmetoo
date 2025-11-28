@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bored? Me Too. - Premium 3D Printed Fidgets & Toys</title>
-    <meta name="description" content="High-quality 3D printed fidgets and toys. Free shipping on orders over $25. Satisfaction guaranteed.">
+    <title>Bored? Me Too. - 3D Printed Fidgets & Toys</title>
     <style>
         * {
             margin: 0;
@@ -39,23 +38,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: #999;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
         }
 
         .cart-button {
@@ -111,23 +93,7 @@
             font-size: 1.4em;
             color: #999;
             max-width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .trust-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #667eea;
-            font-weight: 600;
+            margin: 0 auto;
         }
 
         .container {
@@ -143,34 +109,9 @@
             text-align: center;
         }
 
-        .filter-bar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #999;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
-            color: #667eea;
-        }
-
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
@@ -180,22 +121,8 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 24px;
             padding: 30px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
+            transition: all 0.4s;
             position: relative;
-            overflow: hidden;
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.4s;
         }
 
         .product-card:hover {
@@ -204,53 +131,21 @@
             box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
         }
 
-        .product-card:hover::before {
-            opacity: 1;
-        }
-
         .product-icon {
             font-size: 4.5em;
             margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(102, 126, 234, 0.2);
-            color: #667eea;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 0.8em;
-            font-weight: 700;
-            z-index: 2;
         }
 
         .product-name {
             font-size: 1.5em;
             font-weight: 700;
             margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
         }
 
         .product-description {
             color: #999;
-            margin-bottom: 15px;
-            font-size: 1em;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-
-        .product-specs {
-            color: #666;
-            font-size: 0.9em;
             margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
+            line-height: 1.6;
         }
 
         .product-footer {
@@ -258,8 +153,6 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 20px;
-            position: relative;
-            z-index: 1;
         }
 
         .product-price {
@@ -281,12 +174,10 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
         .add-to-cart:hover {
             transform: scale(1.05);
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
         }
 
         .modal {
@@ -297,16 +188,15 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
             z-index: 1000;
             overflow-y: auto;
+            padding: 20px;
         }
 
         .modal.active {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
         }
 
         .modal-content {
@@ -315,10 +205,10 @@
             border-radius: 24px;
             max-width: 800px;
             width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
             padding: 40px;
             position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .close-modal {
@@ -332,15 +222,9 @@
             cursor: pointer;
             width: 40px;
             height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s;
         }
 
         .close-modal:hover {
-            background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
 
@@ -354,6 +238,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .cart-item-info {
@@ -369,7 +254,6 @@
         .cart-item-price {
             color: #667eea;
             font-weight: 600;
-            font-size: 1.1em;
         }
 
         .quantity-controls {
@@ -390,20 +274,12 @@
             border-radius: 50%;
             cursor: pointer;
             font-weight: 700;
-            font-size: 1.2em;
-            transition: all 0.3s;
-        }
-
-        .qty-btn:hover {
-            transform: scale(1.1);
-            background: #764ba2;
         }
 
         .quantity {
             min-width: 40px;
             text-align: center;
             font-weight: 700;
-            font-size: 1.1em;
         }
 
         .remove-btn {
@@ -413,51 +289,21 @@
             padding: 10px 20px;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .remove-btn:hover {
-            background: rgba(255, 71, 87, 0.2);
-        }
-
-        .cart-summary {
-            background: rgba(102, 126, 234, 0.1);
-            padding: 20px;
-            border-radius: 16px;
-            margin-top: 30px;
-        }
-
-        .cart-summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 1.1em;
         }
 
         .cart-total {
-            font-size: 1.8em;
+            text-align: right;
+            font-size: 2em;
             font-weight: 800;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .shipping-notice {
-            background: rgba(46, 204, 113, 0.1);
-            color: #2ecc71;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
-            text-align: center;
-            font-size: 0.9em;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .empty-cart {
             text-align: center;
             padding: 60px 20px;
             color: #666;
-            font-size: 1.2em;
         }
 
         .form-group {
@@ -471,7 +317,7 @@
             color: #999;
         }
 
-        input, textarea, select {
+        input, textarea {
             width: 100%;
             padding: 16px;
             background: rgba(255, 255, 255, 0.05);
@@ -479,18 +325,11 @@
             border-radius: 12px;
             font-size: 16px;
             color: #fff;
-            transition: all 0.3s;
         }
 
-        input:focus, textarea:focus, select:focus {
+        input:focus, textarea:focus {
             outline: none;
             border-color: #667eea;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        select option {
-            background: #1a1a1a;
-            color: #fff;
         }
 
         textarea {
@@ -499,53 +338,12 @@
             font-family: inherit;
         }
 
-        .checkout-progress {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .progress-step {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #666;
-        }
-
-        .progress-step.active {
-            color: #667eea;
-            font-weight: 700;
-        }
-
-        .progress-number {
-            background: rgba(255, 255, 255, 0.1);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-        }
-
-        .progress-step.active .progress-number {
-            background: #667eea;
-            color: white;
-        }
-
         .payment-section {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
             padding: 40px;
             border-radius: 16px;
             text-align: center;
             margin: 30px 0;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-        }
-
-        .payment-section h3 {
-            font-size: 1.8em;
-            margin-bottom: 20px;
         }
 
         .venmo-link {
@@ -556,15 +354,7 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.2em;
             margin: 20px 0;
-            transition: all 0.3s;
-            box-shadow: 0 8px 20px rgba(0, 140, 255, 0.4);
-        }
-
-        .venmo-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(0, 140, 255, 0.6);
         }
 
         .btn-primary {
@@ -577,18 +367,6 @@
             font-weight: 700;
             cursor: pointer;
             width: 100%;
-            transition: all 0.3s;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
 
         .btn-secondary {
@@ -602,27 +380,6 @@
             cursor: pointer;
             width: 100%;
             margin-top: 15px;
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-copy {
-            background: rgba(46, 204, 113, 0.1);
-            border: 1px solid rgba(46, 204, 113, 0.3);
-            color: #2ecc71;
-            padding: 12px 24px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-
-        .btn-copy:hover {
-            background: rgba(46, 204, 113, 0.2);
         }
 
         .button-group {
@@ -631,340 +388,127 @@
             margin-top: 30px;
         }
 
-        .order-details-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            line-height: 1.8;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .info-section {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 60px 40px;
-            margin-top: 60px;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .info-card {
-            text-align: center;
-        }
-
-        .info-card h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-
-        .info-card p {
-            color: #999;
-            line-height: 1.8;
-        }
-
-        .faq-section {
-            max-width: 800px;
-            margin: 60px auto;
-        }
-
-        .faq-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            margin-bottom: 20px;
-            border-radius: 16px;
-        }
-
-        .faq-item h3 {
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-
-        .faq-item p {
-            color: #999;
-            line-height: 1.8;
-        }
-
         footer {
             background: rgba(255, 255, 255, 0.03);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 60px 40px 40px;
-            color: #666;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            color: #999;
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
-
-        .footer-section p, .footer-section a {
-            color: #666;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: #667eea;
-        }
-
-        .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            color: #666;
         }
 
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5em;
             }
-            
-            .navbar {
-                padding: 15px 20px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
             .product-grid {
                 grid-template-columns: 1fr;
             }
-
-            .cart-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
             .button-group {
                 flex-direction: column;
             }
-
-            .modal-content {
-                padding: 30px 20px;
-            }
-
-            .trust-badges {
-                gap: 20px;
-            }
-
-            .checkout-progress {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(102, 126, 234, 0.5);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(102, 126, 234, 0.7);
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">Bored? Me Too.</div>
-        <div class="nav-links">
-            <a href="#fidgets">Fidgets</a>
-            <a href="#toys">Toys</a>
-            <a href="#faq">FAQ</a>
-            <button class="cart-button" onclick="openCart()">
-                🛒 Cart <span class="cart-count" id="cartCount">0</span>
-            </button>
-        </div>
+        <button class="cart-button" onclick="openCart()">
+            🛒 Cart <span class="cart-count" id="cartCount">0</span>
+        </button>
     </nav>
 
-    <!-- Holiday Deal Banner -->
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 15px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-        <div style="font-size: 1.3em; font-weight: 800; margin-bottom: 5px;">🎄 HOLIDAY SPECIAL 🎁</div>
-        <div style="font-size: 1.1em;">$5 Off Per 3 Items! (6 items = $10 off, 9 items = $15 off) | Ends January 3, 2026</div>
-        <div style="font-size: 0.9em; margin-top: 5px; opacity: 0.9;">Discount automatically applied at checkout</div>
-    </div>
-
     <div class="hero">
-        <h1>Beat Boredom, One Print at a Time</h1>
-        <p>High-quality 3D printed fidgets and toys made with premium PLA material. Each piece is printed to order with precision and care.</p>
-        
-        <div class="trust-badges">
-            <div class="trust-badge">
-                ✓ Worldwide Shipping
-            </div>
-            <div class="trust-badge">
-                ✓ Satisfaction Guaranteed
-            </div>
-            <div class="trust-badge">
-                ✓ Premium Quality PLA
-            </div>
-        </div>
+        <h1>Beat Boredom</h1>
+        <p>Premium 3D printed fidgets, toys, and custom designs</p>
     </div>
 
-    <!-- Holiday Bundle Deal Banner -->
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; text-align: center; margin: 40px 0; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);">
-        <div class="container">
-            <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; margin-bottom: 15px;">
-                <span style="color: #fff; font-weight: 600; font-size: 0.9em;">🎄 LIMITED TIME OFFER</span>
-            </div>
-            <h2 style="color: #fff; font-size: 2.5em; margin: 15px 0; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">Holiday Bundle Deal!</h2>
-            <p style="color: rgba(255,255,255,0.95); font-size: 1.3em; margin: 20px 0; font-weight: 500;">
-                🎁 Choose ANY 3 Items for Just $5!
-            </p>
-            <p style="color: rgba(255,255,255,0.85); font-size: 1.1em; margin: 15px 0;">
-                Mix & match your favorite fidgets and toys
-            </p>
-            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 12px 30px; border-radius: 12px; margin-top: 20px; border: 2px dashed rgba(255,255,255,0.4);">
-                <p style="color: #fff; font-size: 1em; margin: 0;">
-                    ⏰ Offer ends <strong>January 3, 2026</strong>
-                </p>
-            </div>
-            <div style="margin-top: 25px;">
-                <a href="#fidgets" style="display: inline-block; background: #fff; color: #667eea; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1.1em; box-shadow: 0 5px 20px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
-                    Shop Holiday Deal →
-                </a>
-            </div>
-            <p style="color: rgba(255,255,255,0.8); font-size: 0.9em; margin-top: 20px;">
-                * Add any 3 items to cart, discount applied automatically
-            </p>
-        </div>
-    </div>
-
-    <div class="container" id="fidgets">
+    <div class="container">
         <h2 class="section-title">Fidgets</h2>
-        
-        <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
-            <button class="filter-btn" onclick="filterProducts('under5')">Under $5</button>
-            <button class="filter-btn" onclick="filterProducts('5to10')">$5 - $10</button>
-        </div>
-
-        <div class="product-grid" id="fidgetGrid">
-            <div class="product-card" data-price="8">
-                <div class="product-badge">Best Seller</div>
-                <img src="gear-cube.png" alt="Gear Cube" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">⚙️</div>
                 <div class="product-name">Gear Cube</div>
-                <div class="product-description">Mesmerizing mechanical cube with interlocking gears that rotate smoothly together</div>
+                <div class="product-description">Mesmerizing mechanical cube with interlocking gears</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Gear Cube', 8)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="3">
-                <img src="spiral-keychain.png" alt="Spiral Keychain" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">🔑</div>
                 <div class="product-name">Spiral Keychain</div>
-                <div class="product-description">Compact spiral fidget perfect for your keys - satisfying texture and endless spinning</div>
+                <div class="product-description">Compact spiral fidget perfect for your keys</div>
                 <div class="product-footer">
                     <div class="product-price">$3</div>
                     <button class="add-to-cart" onclick="addToCart('Spiral Keychain', 3)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="8">
-                <img src="tornado.png" alt="Tornado" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">🌪️</div>
                 <div class="product-name">Tornado</div>
-                <div class="product-description">Spinning vortex fidget with ultra-smooth rotation and mesmerizing motion</div>
+                <div class="product-description">Spinning vortex fidget with smooth rotation</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Tornado', 8)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="8">
-                <img src="gear-ball.png" alt="Gear Ball" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">⚽</div>
                 <div class="product-name">Gear Ball</div>
-                <div class="product-description">Spherical gear mechanism that's oddly satisfying to manipulate and display</div>
+                <div class="product-description">Spherical gear mechanism that's oddly satisfying</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Gear Ball', 8)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="8">
-                <div class="product-badge">Popular</div>
-                <img src="spiral-cone.png" alt="Spiral Cone" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">🌀</div>
                 <div class="product-name">Spiral Cone</div>
-                <div class="product-description">Hypnotic spiral design in a cone shape - perfect desk ornament and fidget</div>
+                <div class="product-description">Hypnotic spiral design in a cone shape</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Spiral Cone', 8)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="8">
-                <img src="gear-spinner.png" alt="Gear Spinner" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">⭐</div>
                 <div class="product-name">Gear Spinner</div>
-                <div class="product-description">Premium spinner with visible mechanical gears and extended spin time</div>
+                <div class="product-description">Premium spinner with mechanical gears</div>
                 <div class="product-footer">
                     <div class="product-price">$8</div>
                     <button class="add-to-cart" onclick="addToCart('Gear Spinner', 8)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="5">
-                <img src="pain-roller.png" alt="Pain Roller" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">💆</div>
                 <div class="product-name">Pain Roller</div>
-                <div class="product-description">Satisfying massage roller for stress relief - great for hands, arms, and neck</div>
+                <div class="product-description">Satisfying massage roller for stress relief</div>
                 <div class="product-footer">
                     <div class="product-price">$5</div>
                     <button class="add-to-cart" onclick="addToCart('Pain Roller', 5)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="5">
-                <img src="shark.png" alt="Shark" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">🦈</div>
                 <div class="product-name">Shark</div>
-                <div class="product-description">Articulated shark with moveable joints - fun to pose and fidget with</div>
+                <div class="product-description">Articulated shark with moveable joints</div>
                 <div class="product-footer">
                     <div class="product-price">$5</div>
                     <button class="add-to-cart" onclick="addToCart('Shark', 5)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="5">
-                <img src="dragon.png" alt="Dragon" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">🐉</div>
                 <div class="product-name">Dragon</div>
-                <div class="product-description">Flexible dragon with poseable segments - makes a great desk companion</div>
+                <div class="product-description">Flexible dragon with poseable segments</div>
                 <div class="product-footer">
                     <div class="product-price">$5</div>
                     <button class="add-to-cart" onclick="addToCart('Dragon', 5)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="3">
-                <img src="joystick.png" alt="Joystick" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">🕹️</div>
                 <div class="product-name">Joystick</div>
-                <div class="product-description">Mini joystick fidget for gamers - clicks and moves just like the real thing</div>
+                <div class="product-description">Mini joystick fidget for gamers</div>
                 <div class="product-footer">
                     <div class="product-price">$3</div>
                     <button class="add-to-cart" onclick="addToCart('Joystick', 3)">Add to Cart</button>
@@ -972,22 +516,21 @@
             </div>
         </div>
 
-        <h2 class="section-title" style="margin-top: 80px;" id="toys">Toys</h2>
-        <div class="product-grid" id="toysGrid">
-            <div class="product-card" data-price="10">
-                <img src="gonggi.png" alt="Squid Game's Gonggi" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+        <h2 class="section-title">Toys</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">🎮</div>
                 <div class="product-name">Squid Game's "Gonggi"</div>
-                <div class="product-description">Traditional Korean jacks game from the hit series - complete set with instructions</div>
+                <div class="product-description">Traditional Korean jacks game</div>
                 <div class="product-footer">
                     <div class="product-price">$10</div>
-                    <button class="add-to-cart" onclick="addToCart('Squid Game\'s Gonggi', 10)">Add to Cart</button>
+                    <button class="add-to-cart" onclick="addToCart('Squid Game Gonggi', 10)">Add to Cart</button>
                 </div>
             </div>
-
-            <div class="product-card" data-price="10">
-                <img src="tetris-stack.png" alt="Tetris Stack" style="width: 100%; max-width: 150px; height: 150px; object-fit: contain; margin: 0 auto 20px; display: block;">
+            <div class="product-card">
+                <div class="product-icon">🎲</div>
                 <div class="product-name">Tetris Stack</div>
-                <div class="product-description">Stackable Tetris pieces for endless puzzle fun - 7 classic shapes in classic colors</div>
+                <div class="product-description">Stackable Tetris pieces</div>
                 <div class="product-footer">
                     <div class="product-price">$10</div>
                     <button class="add-to-cart" onclick="addToCart('Tetris Stack', 10)">Add to Cart</button>
@@ -996,123 +539,6 @@
         </div>
     </div>
 
-    <div class="info-section">
-        <div class="container">
-            <h2 class="section-title">Why Choose Our 3D Prints?</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>🏆 Quality Materials</h3>
-                    <p>All products are printed with premium PLA filament, ensuring durability, smooth finish, and vibrant colors that last.</p>
-                </div>
-                <div class="info-card">
-                    <h3>🎨 Custom Colors</h3>
-                    <p>Choose from our available colors: Red-Black, Burnt Titanium, Twinkling Silver, Red, Black, Blue, Yellow, Green, Purple, Rainbow, Chief's Red-Yellow, Blue-Green, Copper-Purple-Green, White, Grey, and Orange. Request your color preference in the order notes!</p>
-                    <p style="margin-top: 10px; font-size: 0.85em; color: #999;">*Note: Rainbow prints may vary in color pattern with each print</p>
-                </div>
-                <div class="info-card">
-                    <h3>📦 Fast Shipping</h3>
-                    <p>Orders ship within 2-3 business days. Expect delivery in 7-10 days total. Free shipping on orders over $25!</p>
-                </div>
-                <div class="info-card">
-                    <h3>💯 Satisfaction Guarantee</h3>
-                    <p>Not happy? We'll make it right. 30-day return policy on all products. Your satisfaction is our priority.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Customer Reviews Section -->
-    <div style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); padding: 60px 0;">
-        <div class="container">
-            <h2 class="section-title">⭐ What Our Customers Say</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
-                
-                <div style="background: rgba(0,0,0,0.3); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
-                    <div style="color: #ffd700; font-size: 1.2em; margin-bottom: 10px;">★★★★★</div>
-                    <p style="color: #fff; font-size: 1.05em; line-height: 1.6; margin-bottom: 15px;">"The Gear Cube is AMAZING! Perfect size for my desk and the gears move so smoothly. I've been fidgeting with it nonstop during Zoom calls. My coworkers keep asking where I got it!"</p>
-                    <div style="color: #667eea; font-weight: 600;">— Sarah M.</div>
-                    <div style="color: #999; font-size: 0.9em;">Verified Purchase • Gear Cube</div>
-                </div>
-
-                <div style="background: rgba(0,0,0,0.3); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
-                    <div style="color: #ffd700; font-size: 1.2em; margin-bottom: 10px;">★★★★★</div>
-                    <p style="color: #fff; font-size: 1.05em; line-height: 1.6; margin-bottom: 15px;">"Got the local pickup option and met up the next day. Super easy process! The dragon is so cool - my kids love playing with it. The quality is way better than I expected for 3D printed stuff."</p>
-                    <div style="color: #667eea; font-weight: 600;">— Mike R.</div>
-                    <div style="color: #999; font-size: 0.9em;">Verified Purchase • Dragon</div>
-                </div>
-
-                <div style="background: rgba(0,0,0,0.3); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
-                    <div style="color: #ffd700; font-size: 1.2em; margin-bottom: 10px;">★★★★★</div>
-                    <p style="color: #fff; font-size: 1.05em; line-height: 1.6; margin-bottom: 15px;">"Ordered 3 items to get the holiday deal - totally worth it! The spiral keychain is my favorite. Love that I could pick different colors for each item. Shipping was fast too!"</p>
-                    <div style="color: #667eea; font-weight: 600;">— Jessica T.</div>
-                    <div style="color: #999; font-size: 0.9em;">Verified Purchase • 3-Item Bundle</div>
-                </div>
-
-                <div style="background: rgba(0,0,0,0.3); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
-                    <div style="color: #ffd700; font-size: 1.2em; margin-bottom: 10px;">★★★★★</div>
-                    <p style="color: #fff; font-size: 1.05em; line-height: 1.6; margin-bottom: 15px;">"The Burnt Titanium color is GORGEOUS! Way cooler than the photos show. Bought the tornado and it sits on my desk - everyone who sees it wants to spin it. Great conversation starter."</p>
-                    <div style="color: #667eea; font-weight: 600;">— David K.</div>
-                    <div style="color: #999; font-size: 0.9em;">Verified Purchase • Tornado</div>
-                </div>
-
-                <div style="background: rgba(0,0,0,0.3); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
-                    <div style="color: #ffd700; font-size: 1.2em; margin-bottom: 10px;">★★★★★</div>
-                    <p style="color: #fff; font-size: 1.05em; line-height: 1.6; margin-bottom: 15px;">"Best impulse buy ever! The shark is adorable and super poseable. I got it in the Chief's colors (red-yellow) and it looks sick on my desk. Quality is solid - doesn't feel cheap at all."</p>
-                    <div style="color: #667eea; font-weight: 600;">— Tyler B.</div>
-                    <div style="color: #999; font-size: 0.9em;">Verified Purchase • Shark</div>
-                </div>
-
-                <div style="background: rgba(0,0,0,0.3); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
-                    <div style="color: #ffd700; font-size: 1.2em; margin-bottom: 10px;">★★★★★</div>
-                    <p style="color: #fff; font-size: 1.05em; line-height: 1.6; margin-bottom: 15px;">"Bought the Tetris Stack for my son's birthday and he LOVES it! The pieces fit together perfectly and the colors are vibrant. Such a fun gift idea. Will definitely order more!"</p>
-                    <div style="color: #667eea; font-weight: 600;">— Amanda L.</div>
-                    <div style="color: #999; font-size: 0.9em;">Verified Purchase • Tetris Stack</div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="container faq-section" id="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        
-        <div class="faq-item">
-            <h3>How long will my order take?</h3>
-            <p><strong>Important:</strong> Orders are printed AFTER payment is received via Venmo.</p>
-            <p><strong>Timeline:</strong>
-            <br>• Submit order & pay → Production starts within 24 hours
-            <br>• Printing & prep: 2-3 business days
-            <br>• Shipping: 7-10 days total (or pickup ready in 2-3 days)</p>
-        </div>
-
-        <div class="faq-item">
-            <h3>What colors are available?</h3>
-            <p>We offer the following colors: <strong>Red-Black, Burnt Titanium, Twinkling Silver, Red, Black, Blue, Yellow, Green, Purple, Rainbow, Chief's Red-Yellow, Blue-Green, Copper-Purple-Green, White, Grey, and Orange</strong>. Just leave a note with your color preference at checkout.</p>
-            <p style="margin-top: 10px; font-style: italic; color: #999;">*Please note: Rainbow filament produces unique color patterns with each print, so your item may not look identical to others.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3>Can I return or exchange items?</h3>
-            <p>Yes! We offer a 30-day return/exchange policy. If you're not satisfied with your purchase, contact us and we'll make it right.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3>How do I care for my 3D printed items?</h3>
-            <p>PLA is durable but should be kept away from extreme heat (don't leave in hot cars). Clean with mild soap and water. Avoid dishwashers and harsh chemicals.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3>Do you take custom orders?</h3>
-            <p>Absolutely! Contact us at <a href="/cdn-cgi/l/email-protection#92f0fde0f7f6fff7e6a0d2f5fff3fbfebcf1fdff" style="color: #667eea;"><span class="__cf_email__" data-cfemail="10727f6275747d75642250777d71797c3e737f7d">[email&#160;protected]</span></a> to discuss custom designs, bulk orders, or special requests.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3>What payment methods do you accept?</h3>
-            <p>We currently accept payments via Venmo. After placing your order, you'll receive payment instructions with your order number.</p>
-        </div>
-    </div>
-
-    <!-- Cart Modal -->
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeCart()">×</button>
@@ -1120,362 +546,64 @@
             <div id="cartItems"></div>
             <div class="button-group">
                 <button class="btn-secondary" onclick="closeCart()">Continue Shopping</button>
-                <button class="btn-primary" onclick="openCheckout()">Proceed to Checkout</button>
+                <button class="btn-primary" onclick="openCheckout()">Checkout</button>
             </div>
         </div>
     </div>
 
-    <!-- Checkout Modal -->
     <div class="modal" id="checkoutModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeCheckout()">×</button>
             <h2 class="section-title">Checkout</h2>
-            
-            <div class="checkout-progress">
-                <div class="progress-step active">
-                    <span class="progress-number">1</span>
-                    <span>Information</span>
-                </div>
-                <div class="progress-step">
-                    <span class="progress-number">2</span>
-                    <span>Payment</span>
-                </div>
-                <div class="progress-step">
-                    <span class="progress-number">3</span>
-                    <span>Confirmation</span>
-                </div>
-            </div>
-
             <form id="checkoutForm">
                 <div class="form-group">
                     <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="John Doe">
+                    <input type="text" id="name" required>
                 </div>
-
                 <div class="form-group">
                     <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                    <input type="tel" id="phone" required>
                 </div>
-
                 <div class="form-group">
                     <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    <input type="email" id="email" required>
                 </div>
-
                 <div class="form-group">
-                    <label for="deliveryMethod">Delivery Method *</label>
-                    <select id="deliveryMethod" name="deliveryMethod" required onchange="toggleDeliveryFields()">
-                        <option value="">Select delivery method...</option>
-                        <option value="shipping">Shipping</option>
-                        <option value="pickup">Local Pickup - $5.00</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="countryField" style="display: none;">
-                    <label for="country">Country *</label>
-                    <select id="country" name="country" onchange="updateShippingCost()">
-                        <option value="">Select country...</option>
-                        <option value="US" selected>United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="MX">Mexico</option>
-                        <option value="UK">United Kingdom</option>
-                        <option value="AU">Australia</option>
-                        <option value="INT">Other International</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="pickupLocationField" style="display: none;">
-                    <label for="pickupLocation">Pickup Location *</label>
-                    <select id="pickupLocation" name="pickupLocation">
-                        <option value="">Please select location</option>
-                        <option value="Kansas City Area">Kansas City Area</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="pickupAddressField" style="display: none;">
-                    <label for="pickupAddress">Pickup Address *</label>
-                    <textarea id="pickupAddress" name="pickupAddress" placeholder="Enter your address in Kansas City for pickup coordination"></textarea>
-                    <div style="color: #999; font-size: 0.85em; margin-top: 5px;">We'll contact you to arrange a convenient pickup time near this address.</div>
-                </div>
-
-                <div class="form-group" id="addressField" style="display: none;">
                     <label for="address">Shipping Address *</label>
-                    <textarea id="address" name="address" placeholder="123 Main St&#10;City, State/Province, ZIP/Postal Code"></textarea>
+                    <textarea id="address" required></textarea>
                 </div>
-
+                <div class="form-group">
+                    <label for="notes">Order Notes (Optional)</label>
+                    <textarea id="notes"></textarea>
+                </div>
                 <div class="payment-section">
-                    <h3>💳 Order Summary</h3>
-                    <div style="text-align: left; margin: 20px 0;">
-                        <div id="checkoutItemsList"></div>
-                    </div>
-                    <div class="cart-summary-row">
-                        <span>Subtotal:</span>
-                        <span>$<span id="checkoutSubtotal">0.00</span></span>
-                    </div>
-                    <div class="cart-summary-row">
-                        <span id="shippingLabel">Shipping:</span>
-                        <span id="shippingCost">$15.00</span>
-                    </div>
-                    <div id="shippingNote" style="text-align: center; color: #667eea; font-size: 0.9em; margin: 8px 0; display: none;"></div>
-                    <div class="cart-total">
-                        <div class="cart-summary-row">
-                            <span>Total:</span>
-                            <span>$<span id="checkoutTotal">0.00</span></span>
-                        </div>
-                    </div>
-                    <div id="freeShippingNotice" class="shipping-notice" style="display: none;">
-                        🎉 Free shipping applied!
-                    </div>
+                    <h3>💳 Payment</h3>
+                    <p style="color:#999">Total: $<span id="checkoutTotal">0.00</span></p>
+                    <a href="https://venmo.com/u/keiranvu" target="_blank" class="venmo-link">Pay with Venmo</a>
+                    <p style="color:#999;font-size:0.9em">Include your order number in the payment note</p>
                 </div>
-
-                <div style="background: rgba(255, 107, 107, 0.1); border: 1px solid #ff6b6b; padding: 15px; border-radius: 12px; margin: 20px 0; text-align: center;">
-                    <p style="color: #ff6b6b; font-weight: 600; margin: 0; font-size: 0.95em;">
-                        ⚠️ Note: Order will be printed AFTER payment is received via Venmo
-                    </p>
-                </div>
-
-                <button type="submit" class="btn-primary">Place Order</button>
+                <button type="button" class="btn-primary" onclick="completeOrder()">Complete Order</button>
             </form>
-
             <button class="btn-secondary" onclick="backToCart()">Back to Cart</button>
         </div>
     </div>
 
-    <!-- Order Confirmation Modal -->
     <div class="modal" id="confirmationModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeConfirmation()">×</button>
             <h2 class="section-title">✅ Order Confirmed!</h2>
-            
-            <div style="text-align: center; margin: 30px 0;">
-                <p style="font-size: 1.2em; color: #999; margin-bottom: 20px;">
-                    Thank you for your order! Please complete the following steps:
-                </p>
-                <div style="background: rgba(255, 107, 107, 0.1); border: 2px solid #ff6b6b; padding: 15px; border-radius: 12px; margin: 20px 0;">
-                    <p style="color: #ff6b6b; font-weight: 700; font-size: 1.1em; margin: 0;">
-                        ⚠️ IMPORTANT: Your order will NOT be printed until payment is received via Venmo
-                    </p>
-                </div>
-            </div>
-
-            <div class="payment-section">
-                <h3>📋 STEP 1: Your Order Number</h3>
-                <div style="font-size: 2em; font-weight: 800; margin: 20px 0; color: #667eea; font-family: 'Courier New', monospace;" id="displayOrderNumber"></div>
-                <p style="color: #999; margin-bottom: 20px;">Save this number for your records!</p>
-                <button class="btn-copy" onclick="copyOrderNumber()">📋 Copy Order Number</button>
-            </div>
-
-            <div class="order-details-box" id="orderDetailsBox"></div>
-
-            <div class="payment-section">
-                <h3>💰 STEP 2: Complete Payment to Start Production</h3>
-                <p style="color: #ff6b6b; font-weight: 600; margin-bottom: 10px;">⚠️ Order will NOT be printed until payment is confirmed</p>
-                <p style="color: #999; margin-bottom: 10px;"><strong>Amount Due: $<span id="finalTotal">0.00</span></strong></p>
-                <p style="color: #999; margin-bottom: 20px;">
-                    Click below to pay via Venmo. <strong>Include your order number in the payment note.</strong>
-                </p>
-                <a href="https://venmo.com/u/keiranvu" target="_blank" class="venmo-link">
-                    Pay with Venmo →
-                </a>
-                <button class="btn-copy" onclick="copyOrderDetails()" style="margin-top: 15px;">📋 Copy Full Order Details</button>
-            </div>
-
-            <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; margin: 20px 0;">
-                <h3 style="margin-bottom: 15px;">📧 Email Confirmation</h3>
-                <p style="color: #999;">
-                    Your order details have been sent to: <strong id="customerEmail"></strong>
-                    <br><br>
-                    <strong style="color: #ff6b6b;">⏰ Production Timeline:</strong>
-                    <br>• Payment received → Printing starts within 24 hours
-                    <br>• Production time: 2-3 business days
-                    <br>• Shipping/Pickup ready: 2-3 days after payment
-                </p>
-            </div>
-
+            <div id="confirmationDetails"></div>
             <button class="btn-primary" onclick="closeConfirmation()">Done</button>
         </div>
     </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Bored? Me Too.</h3>
-                <p>Premium 3D printed fidgets and toys designed to beat boredom and spark creativity.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="#fidgets">Shop Fidgets</a>
-                <a href="#toys">Shop Toys</a>
-                <a href="#faq">FAQ</a>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Customer Service</h3>
-                <p>Email: <a href="/cdn-cgi/l/email-protection#ee8c819c8b8a838b9adcae89838f8782c08d8183"><span class="__cf_email__" data-cfemail="c3a1acb1a6a7aea6b7f183a4aea2aaafeda0acae">[email&#160;protected]</span></a></p>
-                <p>Response time: Within 24 hours</p>
-                <p>Returns: 30-day policy</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Policies</h3>
-                <a href="#" onclick="showShippingPolicy(); return false;">Shipping Policy</a>
-                <a href="#" onclick="showReturnPolicy(); return false;">Return Policy</a>
-                <a href="#" onclick="showPrivacyPolicy(); return false;">Privacy Policy</a>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p style="font-size: 1.2em; font-weight: 700; color: #999; margin-bottom: 10px;">Bored? Me Too.</p>
-            <p>&copy; 2024 Beat boredom, one print at a time. All rights reserved.</p>
-        </div>
+        <p><strong>Bored? Me Too.</strong></p>
+        <p>&copy; 2024 Beat boredom, one print at a time</p>
     </footer>
 
-    <!-- Policy Modal -->
-    <div class="modal" id="policyModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closePolicyModal()">×</button>
-            <div id="policyContent"></div>
-            <button class="btn-secondary" onclick="closePolicyModal()">Close</button>
-        </div>
-    </div>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Initialize cart from localStorage
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let currentOrderNumber = '';
-        let currentOrderDetails = '';
-
-        // Color options (excluding preset items)
-        const colorOptions = [
-            'Red-Black',
-            'Burnt Titanium',
-            'Twinkling Silver',
-            'Red',
-            'Black',
-            'Blue',
-            'Yellow',
-            'Green',
-            'Purple',
-            'Rainbow',
-            "Chief's Red-Yellow",
-            'Blue-Green',
-            'Copper-Purple-Green',
-            'White',
-            'Grey',
-            'Orange'
-        ];
-
-        // Items with preset colors that can't be changed
-        const presetColorItems = ["Squid Game's Gonggi", "Tetris Stack"];
-
-        // Toggle between shipping and pickup fields
-        function toggleDeliveryFields() {
-            const deliveryMethod = document.getElementById('deliveryMethod').value;
-            const countryField = document.getElementById('countryField');
-            const addressField = document.getElementById('addressField');
-            const pickupLocationField = document.getElementById('pickupLocationField');
-            const pickupAddressField = document.getElementById('pickupAddressField');
-            const addressInput = document.getElementById('address');
-            const countryInput = document.getElementById('country');
-            const pickupLocationInput = document.getElementById('pickupLocation');
-            const pickupAddressInput = document.getElementById('pickupAddress');
-            const shippingLabel = document.getElementById('shippingLabel');
-            
-            if (deliveryMethod === 'shipping') {
-                // Show shipping fields
-                countryField.style.display = 'block';
-                addressField.style.display = 'block';
-                pickupLocationField.style.display = 'none';
-                pickupAddressField.style.display = 'none';
-                
-                // Make shipping fields required
-                addressInput.required = true;
-                countryInput.required = true;
-                pickupLocationInput.required = false;
-                pickupAddressInput.required = false;
-                
-                // Update label
-                if (shippingLabel) shippingLabel.textContent = 'Shipping:';
-                
-                // Update shipping cost
-                updateShippingCost();
-            } else if (deliveryMethod === 'pickup') {
-                // Show pickup fields
-                countryField.style.display = 'none';
-                addressField.style.display = 'none';
-                pickupLocationField.style.display = 'block';
-                pickupAddressField.style.display = 'block';
-                
-                // Make pickup fields required
-                addressInput.required = false;
-                countryInput.required = false;
-                pickupLocationInput.required = true;
-                pickupAddressInput.required = true;
-                
-                // Update label
-                if (shippingLabel) shippingLabel.textContent = 'Pickup:';
-                
-                // Set pickup cost with holiday discount
-                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-                const shipping = 5;
-                
-                // Apply Holiday Bundle Deal
-                const holidayEndDate = new Date('2026-01-03T23:59:59');
-                const currentDate = new Date();
-                const isHolidayActive = currentDate <= holidayEndDate;
-                
-                let discount = 0;
-                if (isHolidayActive && itemCount >= 3) {
-                    const bundles = Math.floor(itemCount / 3);
-                    discount = bundles * 5;
-                }
-                
-                const total = subtotal + shipping - discount;
-                
-                document.getElementById('shippingCost').textContent = '$5.00';
-                document.getElementById('checkoutTotal').textContent = total.toFixed(2);
-                
-                const shippingNote = document.getElementById('shippingNote');
-                if (shippingNote) {
-                    shippingNote.textContent = 'Local pickup fee';
-                    shippingNote.style.display = 'block';
-                }
-            } else {
-                // Hide all conditional fields
-                countryField.style.display = 'none';
-                addressField.style.display = 'none';
-                pickupLocationField.style.display = 'none';
-                pickupAddressField.style.display = 'none';
-                
-                addressInput.required = false;
-                countryInput.required = false;
-                pickupLocationInput.required = false;
-                pickupAddressInput.required = false;
-                
-                // Reset label
-                if (shippingLabel) shippingLabel.textContent = 'Shipping:';
-            }
-        }
-
-        // Save cart to localStorage whenever it changes
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-        }
-
-        // Calculate shipping cost based on country and quantity
-        function calculateShipping(country, itemCount) {
-            if (!country || country === 'US') {
-                // Domestic USA - charge $15 if 3 or less items, $25 if more than 3
-                return itemCount <= 3 ? 15 : 25;
-            } else if (country === 'CA' || country === 'MX') {
-                return 45; // Canada and Mexico
-            } else {
-                return 75; // International
-            }
-        }
+    <script>
+        let cart = [];
 
         function updateCartCount() {
             const count = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -1483,166 +611,58 @@
         }
 
         function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name && !item.color);
-            
+            const existingItem = cart.find(item => item.name === name);
             if (existingItem) {
                 existingItem.quantity++;
             } else {
-                // Check if this item has preset colors
-                const hasPresetColor = presetColorItems.includes(name);
-                cart.push({ 
-                    name, 
-                    price, 
-                    quantity: 1,
-                    color: hasPresetColor ? 'Preset Colors' : null
-                });
+                cart.push({ name, price, quantity: 1 });
             }
-            
-            saveCart();
-            
-            // Visual feedback
+            updateCartCount();
             const btn = event.target;
             const originalText = btn.textContent;
             btn.textContent = '✓ Added!';
-            btn.style.background = '#2ecc71';
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '';
-            }, 1200);
+            setTimeout(() => { btn.textContent = originalText; }, 1000);
         }
 
         function updateCartDisplay() {
             const cartItems = document.getElementById('cartItems');
-            
             if (cart.length === 0) {
-                cartItems.innerHTML = '<div class="empty-cart">Your cart is empty. Start shopping!</div>';
+                cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
                 return;
             }
-            
-            let subtotal = 0;
+            let total = 0;
             let html = '';
-            
             cart.forEach((item, index) => {
-                subtotal += item.price * item.quantity;
-                const hasPresetColor = presetColorItems.includes(item.name);
-                
-                // Build color selector or preset message
-                let colorSelector = '';
-                if (hasPresetColor) {
-                    colorSelector = '<div style="color: #999; font-size: 0.9em; margin-top: 8px;">✓ Preset colors included</div>';
-                } else {
-                    colorSelector = `
-                        <div style="margin-top: 12px;">
-                            <label style="display: block; font-size: 0.9em; color: #999; margin-bottom: 5px;">Color:</label>
-                            <select 
-                                onchange="updateItemColor(${index}, this.value)" 
-                                style="width: 100%; padding: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.9em;"
-                                ${!item.color ? 'style="border-color: #ff4757;"' : ''}
-                            >
-                                <option value="">Select color...</option>
-                                ${colorOptions.map(color => 
-                                    `<option value="${color}" ${item.color === color ? 'selected' : ''}>${color}</option>`
-                                ).join('')}
-                            </select>
-                            ${!item.color ? '<div style="color: #ff4757; font-size: 0.85em; margin-top: 4px;">⚠️ Please select a color</div>' : ''}
-                        </div>
-                    `;
-                }
-                
-                html += `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
-                            ${colorSelector}
-                        </div>
-                        <div class="quantity-controls">
-                            <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
-                            <span class="quantity">${item.quantity}</span>
-                            <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
-                        </div>
-                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                total += item.price * item.quantity;
+                html += `<div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
                     </div>
-                `;
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                        <span class="quantity">${item.quantity}</span>
+                        <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                </div>`;
             });
-            
-            // Calculate shipping based on item count for US
-            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const shipping = itemCount <= 3 ? 15 : 25; // US shipping estimate
-            
-            // Apply Holiday Bundle Deal: $5 off per 3 items (until January 3, 2026)
-            const holidayEndDate = new Date('2026-01-03T23:59:59');
-            const currentDate = new Date();
-            const isHolidayActive = currentDate <= holidayEndDate;
-            
-            let discount = 0;
-            let discountMessage = '';
-            
-            if (isHolidayActive && itemCount >= 3) {
-                const bundles = Math.floor(itemCount / 3); // How many sets of 3
-                discount = bundles * 5; // $5 per set of 3
-                discountMessage = bundles === 1 
-                    ? '🎁 Holiday Special: $5 Off Applied!' 
-                    : `🎁 Holiday Special: $${discount} Off Applied! (${bundles} bundles)`;
-            }
-            
-            const total = subtotal + shipping - discount;
-            
-            html += `
-                <div class="cart-summary">
-                    <div class="cart-summary-row">
-                        <span>Subtotal:</span>
-                        <span>$${subtotal.toFixed(2)}</span>
-                    </div>
-                    ${discount > 0 ? `
-                    <div class="cart-summary-row" style="color: #2ecc71;">
-                        <span>🎄 Holiday Discount:</span>
-                        <span>-$${discount.toFixed(2)}</span>
-                    </div>
-                    ` : ''}
-                    <div class="cart-summary-row">
-                        <span>Shipping (US):</span>
-                        <span>$${shipping.toFixed(2)}</span>
-                    </div>
-                    ${discount > 0 ? `<div style="text-align: center; color: #2ecc71; font-size: 0.9em; margin: 12px 0; padding: 10px; background: rgba(46, 204, 113, 0.1); border-radius: 8px; font-weight: 600;">${discountMessage}</div>` : ''}
-                    ${itemCount > 3 ? '<div style="text-align: center; color: #ff6b6b; font-size: 0.85em; margin: 8px 0;">📦 Larger orders require upgraded shipping ($25)</div>' : ''}
-                    ${isHolidayActive && itemCount < 3 ? `<div style="text-align: center; color: #667eea; font-size: 0.85em; margin: 8px 0;">🎁 Add ${3 - itemCount} more item${3 - itemCount > 1 ? 's' : ''} to get $5 off!</div>` : ''}
-                    ${isHolidayActive && itemCount >= 3 && itemCount % 3 !== 0 ? `<div style="text-align: center; color: #667eea; font-size: 0.85em; margin: 8px 0;">💡 Add ${3 - (itemCount % 3)} more item${3 - (itemCount % 3) > 1 ? 's' : ''} to get another $5 off!</div>` : ''}
-                    <div style="text-align: center; color: #999; font-size: 0.85em; margin: 8px 0;">
-                        International shipping calculated at checkout
-                    </div>
-                    <div class="cart-total">
-                        <div class="cart-summary-row">
-                            <span>Total:</span>
-                            <span>$${total.toFixed(2)}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
+            html += `<div class="cart-total">Total: $${total.toFixed(2)}</div>`;
             cartItems.innerHTML = html;
-        }
-
-        function updateItemColor(index, color) {
-            cart[index].color = color;
-            saveCart();
-            updateCartDisplay();
         }
 
         function changeQuantity(index, change) {
             cart[index].quantity += change;
-            
             if (cart[index].quantity <= 0) {
                 cart.splice(index, 1);
             }
-            
-            saveCart();
+            updateCartCount();
             updateCartDisplay();
         }
 
         function removeFromCart(index) {
             cart.splice(index, 1);
-            saveCart();
+            updateCartCount();
             updateCartDisplay();
         }
 
@@ -1660,110 +680,10 @@
                 alert('Your cart is empty!');
                 return;
             }
-            
-            // Validate all items have colors selected (except preset items)
-            const missingColors = cart.filter(item => !item.color && !presetColorItems.includes(item.name));
-            if (missingColors.length > 0) {
-                alert('Please select a color for all items in your cart before proceeding to checkout.');
-                return;
-            }
-            
-            // Calculate totals with item count for shipping
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const country = document.getElementById('country') ? document.getElementById('country').value : 'US';
-            const shipping = calculateShipping(country, itemCount);
-            
-            // Apply Holiday Bundle Deal: $5 off per 3 items
-            const holidayEndDate = new Date('2026-01-03T23:59:59');
-            const currentDate = new Date();
-            const isHolidayActive = currentDate <= holidayEndDate;
-            
-            let discount = 0;
-            if (isHolidayActive && itemCount >= 3) {
-                const bundles = Math.floor(itemCount / 3); // How many sets of 3
-                discount = bundles * 5; // $5 per set of 3
-            }
-            
-            const total = subtotal + shipping - discount;
-            
-            // Update checkout display
-            document.getElementById('checkoutSubtotal').textContent = subtotal.toFixed(2);
-            document.getElementById('shippingCost').textContent = '$' + shipping.toFixed(2);
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             document.getElementById('checkoutTotal').textContent = total.toFixed(2);
-            
-            // Hide free shipping notice
-            document.getElementById('freeShippingNotice').style.display = 'none';
-            
-            // Display items in checkout with colors
-            let itemsHTML = '';
-            cart.forEach(item => {
-                const colorDisplay = item.color === 'Preset Colors' ? ' (Preset Colors)' : ` (${item.color})`;
-                itemsHTML += `
-                    <div class="cart-summary-row" style="margin-bottom: 8px;">
-                        <span>${item.name}${colorDisplay} × ${item.quantity}</span>
-                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
-                    </div>
-                `;
-            });
-            
-            // Add holiday discount if applicable
-            if (discount > 0) {
-                const bundles = Math.floor(itemCount / 3);
-                const bundleText = bundles === 1 ? '1 bundle' : `${bundles} bundles`;
-                itemsHTML += `
-                    <div class="cart-summary-row" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); color: #2ecc71;">
-                        <span>🎄 Holiday Discount (${bundleText}):</span>
-                        <span>-$${discount.toFixed(2)}</span>
-                    </div>
-                `;
-            }
-            
-            document.getElementById('checkoutItemsList').innerHTML = itemsHTML;
-            
             closeCart();
             document.getElementById('checkoutModal').classList.add('active');
-        }
-
-        // Update shipping cost when country changes
-        function updateShippingCost() {
-            const country = document.getElementById('country').value;
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const shipping = calculateShipping(country, itemCount);
-            
-            // Apply Holiday Bundle Deal: $5 off per 3 items
-            const holidayEndDate = new Date('2026-01-03T23:59:59');
-            const currentDate = new Date();
-            const isHolidayActive = currentDate <= holidayEndDate;
-            
-            let discount = 0;
-            if (isHolidayActive && itemCount >= 3) {
-                const bundles = Math.floor(itemCount / 3);
-                discount = bundles * 5;
-            }
-            
-            const total = subtotal + shipping - discount;
-            
-            document.getElementById('shippingCost').textContent = '$' + shipping.toFixed(2);
-            document.getElementById('checkoutTotal').textContent = total.toFixed(2);
-            
-            // Show shipping note for international
-            const shippingNote = document.getElementById('shippingNote');
-            if (shippingNote) {
-                if (country === 'CA' || country === 'MX') {
-                    shippingNote.textContent = 'Canada/Mexico shipping: $45';
-                    shippingNote.style.display = 'block';
-                } else if (country && country !== 'US') {
-                    shippingNote.textContent = 'International shipping: $75';
-                    shippingNote.style.display = 'block';
-                } else if (country === 'US' && itemCount > 3) {
-                    shippingNote.textContent = 'Larger orders (4+ items) require upgraded shipping';
-                    shippingNote.style.display = 'block';
-                } else {
-                    shippingNote.style.display = 'none';
-                }
-            }
         }
 
         function closeCheckout() {
@@ -1775,396 +695,69 @@
             openCart();
         }
 
-        function generateOrderNumber() {
-            const timestamp = Date.now();
-            const random = Math.floor(Math.random() * 1000);
-            return `BMT-${timestamp}-${random}`;
+        function closeConfirmation() {
+            document.getElementById('confirmationModal').classList.remove('active');
         }
 
-        function copyOrderNumber() {
-            navigator.clipboard.writeText(currentOrderNumber).then(() => {
-                const btn = event.target;
-                const originalText = btn.textContent;
-                btn.textContent = '✓ Copied!';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                }, 2000);
-            });
-        }
-
-        function copyOrderDetails() {
-            navigator.clipboard.writeText(currentOrderDetails).then(() => {
-                const btn = event.target;
-                const originalText = btn.textContent;
-                btn.textContent = '✓ Copied!';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                }, 2000);
-            });
-        }
-
-        // Handle form submission
-        async function handleCheckoutSubmit(e) {
-            if (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
+        function completeOrder() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const notes = document.getElementById('notes').value;
             
-            // Get form values
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const deliveryMethod = document.getElementById('deliveryMethod').value.trim();
-            
-            // Validate basic fields
-            if (!name || !phone || !email || !deliveryMethod) {
+            if (!name || !phone || !email || !address) {
                 alert('Please fill in all required fields!');
-                return false;
+                return;
             }
             
-            // Basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address!');
-                return false;
-            }
-            
-            let country = '';
-            let address = '';
-            let pickupLocation = '';
-            let pickupAddress = '';
-            let shipping = 0;
-            
-            if (deliveryMethod === 'shipping') {
-                country = document.getElementById('country').value.trim();
-                address = document.getElementById('address').value.trim();
-                
-                if (!country || !address) {
-                    alert('Please fill in shipping country and address!');
-                    return false;
-                }
-                
-                // Calculate shipping for delivery
-                const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-                shipping = calculateShipping(country, itemCount);
-            } else if (deliveryMethod === 'pickup') {
-                pickupLocation = document.getElementById('pickupLocation').value.trim();
-                pickupAddress = document.getElementById('pickupAddress').value.trim();
-                
-                if (!pickupLocation) {
-                    alert('Please select a pickup location!');
-                    return false;
-                }
-                
-                if (!pickupAddress) {
-                    alert('Please enter your pickup address!');
-                    return false;
-                }
-                
-                // Pickup is always $5
-                shipping = 5;
-                country = 'US (Pickup)';
-                address = 'Local Pickup - ' + pickupLocation;
-            }
-            
-            // Generate order number
-            const orderNumber = generateOrderNumber();
-            currentOrderNumber = orderNumber;
-            
-            // Calculate totals
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
-            // Apply Holiday Bundle Deal: $5 off per 3 items
-            const holidayEndDate = new Date('2026-01-03T23:59:59');
-            const currentDate = new Date();
-            const isHolidayActive = currentDate <= holidayEndDate;
-            
-            let discount = 0;
-            if (isHolidayActive && itemCount >= 3) {
-                const bundles = Math.floor(itemCount / 3); // How many sets of 3
-                discount = bundles * 5; // $5 per set of 3
-            }
-            
-            const finalTotal = subtotal + shipping - discount;
-            
-            // Get country name for display
-            const countryNames = {
-                'US': 'United States',
-                'CA': 'Canada',
-                'MX': 'Mexico',
-                'UK': 'United Kingdom',
-                'AU': 'Australia',
-                'INT': 'International',
-                'US (Pickup)': 'Local Pickup'
-            };
-            const countryName = countryNames[country] || country;
-            
-            // Build order details
-            let orderDetails = `ORDER #${orderNumber}\n`;
-            orderDetails += '='.repeat(50) + '\n\n';
-            orderDetails += 'ITEMS ORDERED:\n\n';
+            const orderNumber = 'BMT-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+            let total = 0;
+            let itemsList = '';
+            let orderText = '';
             
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
-                const colorInfo = item.color === 'Preset Colors' ? ' (Preset Colors)' : ` (Color: ${item.color})`;
-                orderDetails += `${item.name}${colorInfo}\n`;
-                orderDetails += `  Quantity: ${item.quantity}\n`;
-                orderDetails += `  Price: $${item.price.toFixed(2)} each\n`;
-                orderDetails += `  Subtotal: $${itemTotal.toFixed(2)}\n\n`;
+                total += itemTotal;
+                itemsList += `<div style="margin:10px 0;padding:10px;background:rgba(255,255,255,0.05);border-radius:8px"><strong>${item.name}</strong><br>Quantity: ${item.quantity} × $${item.price.toFixed(2)} = $${itemTotal.toFixed(2)}</div>`;
+                orderText += `${item.name} x${item.quantity} @ $${item.price.toFixed(2)} = $${itemTotal.toFixed(2)}\n`;
             });
             
-            orderDetails += '='.repeat(50) + '\n';
-            orderDetails += `Subtotal: $${subtotal.toFixed(2)}\n`;
+            const confirmHTML = `<div style="text-align:center;margin-bottom:20px"><h3 style="font-size:2em;color:#667eea">${orderNumber}</h3><p style="color:#999">Save this order number!</p></div><div style="margin:20px 0"><h4>Items:</h4>${itemsList}</div><div style="margin:20px 0;padding:20px;background:rgba(102,126,234,0.2);border-radius:12px;text-align:center"><h3>Total: $${total.toFixed(2)}</h3></div><div style="margin:20px 0;padding:20px;background:rgba(0,140,255,0.1);border-radius:12px"><h4>Next Steps:</h4><ol style="line-height:2"><li>Pay $${total.toFixed(2)} via Venmo</li><li>Go to: venmo.com/u/keiranvu</li><li>Include "${orderNumber}" in payment note</li></ol></div>`;
             
-            if (discount > 0) {
-                const bundles = Math.floor(itemCount / 3);
-                orderDetails += `🎄 Holiday Special Discount (${bundles} ${bundles === 1 ? 'bundle' : 'bundles'} of 3): -$${discount.toFixed(2)}\n`;
-            }
+            const emailData = {
+                orderNumber: orderNumber,
+                orderDate: new Date().toLocaleString(),
+                items: orderText,
+                total: total.toFixed(2),
+                customerName: name,
+                customerPhone: phone,
+                customerEmail: email,
+                customerAddress: address,
+                notes: notes,
+                _subject: 'New Order ' + orderNumber + ' from ' + name,
+                message: 'NEW ORDER #' + orderNumber + '\n\nITEMS:\n' + orderText + '\nTOTAL: $' + total.toFixed(2) + '\n\nCUSTOMER:\nName: ' + name + '\nPhone: ' + phone + '\nEmail: ' + email + '\nAddress: ' + address + (notes ? '\nNotes: ' + notes : '') + '\n\nPayment: Venmo (@keiranvu)'
+            };
             
-            if (deliveryMethod === 'pickup') {
-                orderDetails += `Pickup Fee: $${shipping.toFixed(2)}\n`;
-            } else {
-                orderDetails += `Shipping (${countryName}): $${shipping.toFixed(2)}\n`;
-            }
-            
-            orderDetails += `TOTAL: $${finalTotal.toFixed(2)}\n`;
-            orderDetails += '='.repeat(50) + '\n\n';
-            
-            orderDetails += `CUSTOMER INFORMATION:\n`;
-            orderDetails += `Name: ${name}\n`;
-            orderDetails += `Phone: ${phone}\n`;
-            orderDetails += `Email: ${email}\n`;
-            
-            if (deliveryMethod === 'pickup') {
-                orderDetails += `Delivery Method: Local Pickup\n`;
-                orderDetails += `Pickup Location: ${pickupLocation}\n`;
-                orderDetails += `Customer Address: ${pickupAddress}\n`;
-            } else {
-                orderDetails += `Delivery Method: Shipping\n`;
-                orderDetails += `Country: ${countryName}\n`;
-                orderDetails += `Shipping Address:\n${address}\n`;
-            }
-            
-            orderDetails += `\n${'='.repeat(50)}\n`;
-            orderDetails += `⚠️ IMPORTANT: Order will NOT be printed until payment is received\n`;
-            orderDetails += `Payment Method: Venmo (@keiranvu)\n`;
-            orderDetails += `Payment Amount: $${finalTotal.toFixed(2)}\n`;
-            orderDetails += `Order Date: ${new Date().toLocaleString()}\n`;
-            orderDetails += `\nPRODUCTION TIMELINE:\n`;
-            orderDetails += `• Payment received → Printing starts within 24 hours\n`;
-            orderDetails += `• Production: 2-3 business days\n`;
-            
-            if (deliveryMethod === 'pickup') {
-                orderDetails += `• Pickup ready: 2-3 days after payment\n`;
-                orderDetails += `Pickup Instructions: We will contact you to arrange pickup time and location.\n`;
-            } else {
-                orderDetails += `• Shipping: 7-10 business days total\n`;
-                orderDetails += `Expected Delivery: ${country === 'US' ? '7-10 business days after payment' : '14-21 business days after payment'}\n`;
-            }
-            
-            currentOrderDetails = orderDetails;
-            
-            // Disable submit button while processing
-            const submitBtn = document.querySelector('#checkoutForm button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Processing Order...';
-            
-            try {
-                // Send order via Formspree
-                const formData = new FormData();
-                formData.append('order_number', orderNumber);
-                formData.append('customer_name', name);
-                formData.append('customer_phone', phone);
-                formData.append('customer_email', email);
-                formData.append('delivery_method', deliveryMethod);
-                
-                if (deliveryMethod === 'pickup') {
-                    formData.append('pickup_location', pickupLocation);
-                    formData.append('pickup_address', pickupAddress);
-                } else {
-                    formData.append('country', countryName);
-                    formData.append('shipping_address', address);
-                }
-                
-                formData.append('order_details', orderDetails);
-                formData.append('subtotal', subtotal.toFixed(2));
-                formData.append('shipping', shipping.toFixed(2));
-                formData.append('total', total.toFixed(2));
-                
-                // Add items with colors
-                cart.forEach((item, index) => {
-                    formData.append(`item_${index}_name`, item.name);
-                    formData.append(`item_${index}_color`, item.color);
-                    formData.append(`item_${index}_quantity`, item.quantity);
-                    formData.append(`item_${index}_price`, item.price);
-                });
-                
-                const response = await fetch('https://formspree.io/f/mldyeqal', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
+            fetch('https://formspree.io/f/mldyeqal', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(emailData)
+            }).then(response => {
                 if (response.ok) {
-                    // Update confirmation modal
-                    document.getElementById('displayOrderNumber').textContent = orderNumber;
-                    document.getElementById('finalTotal').textContent = total.toFixed(2);
-                    document.getElementById('customerEmail').textContent = email;
-                    document.getElementById('orderDetailsBox').innerHTML = `<pre style="white-space: pre-wrap; word-wrap: break-word;">${orderDetails}</pre>`;
-                    
-                    // Close checkout and show confirmation
+                    document.getElementById('confirmationDetails').innerHTML = confirmHTML;
                     closeCheckout();
                     document.getElementById('confirmationModal').classList.add('active');
-                    
-                    // Clear form
+                    cart = [];
+                    updateCartCount();
                     document.getElementById('checkoutForm').reset();
-                    toggleDeliveryFields(); // Reset field visibility
                 } else {
-                    throw new Error('Failed to submit order');
+                    alert('Error submitting order. Please try again.');
                 }
-            } catch (error) {
-                console.error('Error submitting order:', error);
-                alert('There was an error submitting your order. Please try again or contact us at boredmet2@gmail.com');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Place Order';
-                return false;
-            }
-            
-            // Re-enable button
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Place Order';
-            
-            return false;
-        }
-        
-        // Attach event listener
-        document.getElementById('checkoutForm').addEventListener('submit', handleCheckoutSubmit);
-
-        function closeConfirmation() {
-            document.getElementById('confirmationModal').classList.remove('active');
-            
-            // Clear cart after confirmation
-            cart = [];
-            saveCart();
-        }
-
-        // Filter products
-        function filterProducts(filter) {
-            // Update button states
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Filter products
-            const cards = document.querySelectorAll('.product-card');
-            cards.forEach(card => {
-                const price = parseFloat(card.dataset.price);
-                let show = true;
-                
-                if (filter === 'under5' && price >= 5) show = false;
-                if (filter === '5to10' && (price < 5 || price > 10)) show = false;
-                
-                card.style.display = show ? 'block' : 'none';
+            }).catch(error => {
+                alert('Error submitting order. Please try again.');
             });
         }
-
-        // Policy functions
-        function showShippingPolicy() {
-            document.getElementById('policyContent').innerHTML = `
-                <h2 class="section-title">Shipping & Pickup Policy</h2>
-                <div class="faq-item">
-                    <h3>Processing Time</h3>
-                    <p>All orders are printed to order and typically ready within 2-3 business days.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Local Pickup - $5.00</h3>
-                    <p><strong>Available Area:</strong> Kansas City</p>
-                    <p>Save on shipping! Pick up your order locally for just $5.00. Select "Kansas City Area" and enter your address at checkout. We'll contact you within 24-48 hours to arrange a convenient pickup time and location near you.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Delivery Time</h3>
-                    <p><strong>United States Shipping:</strong> 7-10 business days<br>
-                    <strong>International Shipping:</strong> 14-21 business days<br>
-                    <strong>Local Pickup:</strong> Ready within 2-3 business days</p>
-                    <p>You'll receive tracking information once shipped orders leave our facility.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Shipping Costs</h3>
-                    <p><strong>Local Pickup:</strong> $5.00 (Kansas City Area)<br><br>
-                    <strong>United States Shipping:</strong><br>
-                    • 1-3 items: $15.00<br>
-                    • 4+ items: $25.00<br><br>
-                    <strong>Canada & Mexico:</strong> $45.00<br>
-                    <strong>International (UK, Australia, Other):</strong> $75.00</p>
-                </div>
-                <div class="faq-item">
-                    <h3>International Orders</h3>
-                    <p>We ship worldwide! Please note that international orders may be subject to customs fees and import duties determined by your country. These fees are the customer's responsibility and are not included in our shipping cost.</p>
-                </div>
-            `;
-            document.getElementById('policyModal').classList.add('active');
-        }
-
-        function showReturnPolicy() {
-            document.getElementById('policyContent').innerHTML = `
-                <h2 class="section-title">Return & Exchange Policy</h2>
-                <div class="faq-item">
-                    <h3>30-Day Guarantee</h3>
-                    <p>We offer a 30-day return or exchange policy on all products. If you're not satisfied, we'll make it right.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Return Process</h3>
-                    <p>Contact us at <a href="mailto:boredmet2@gmail.com" style="color: #667eea;">boredmet2@gmail.com</a> with your order number and reason for return. We'll provide return instructions.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Defective Items</h3>
-                    <p>If you receive a defective item, contact us immediately. We'll send a replacement at no cost to you.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Refunds</h3>
-                    <p>Refunds are processed within 5-7 business days of receiving the returned item.</p>
-                </div>
-            `;
-            document.getElementById('policyModal').classList.add('active');
-        }
-
-        function showPrivacyPolicy() {
-            document.getElementById('policyContent').innerHTML = `
-                <h2 class="section-title">Privacy Policy</h2>
-                <div class="faq-item">
-                    <h3>Information We Collect</h3>
-                    <p>We collect name, email, phone number, and shipping address solely for order fulfillment and customer service.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How We Use Your Information</h3>
-                    <p>Your information is used exclusively to process orders, provide shipping updates, and respond to customer inquiries.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Data Security</h3>
-                    <p>We never share, sell, or distribute your personal information to third parties. Your data is stored securely.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Cookies</h3>
-                    <p>We use localStorage to save your cart between sessions. No tracking cookies are used.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Contact</h3>
-                    <p>Questions about privacy? Email us at <a href="mailto:boredmet2@gmail.com" style="color: #667eea;">boredmet2@gmail.com</a></p>
-                </div>
-            `;
-            document.getElementById('policyModal').classList.add('active');
-        }
-
-        function closePolicyModal() {
-            document.getElementById('policyModal').classList.remove('active');
-        }
-
-        // Initialize cart count on page load
-        updateCartCount();
     </script>
 </body>
 </html>
