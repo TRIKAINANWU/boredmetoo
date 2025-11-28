@@ -1248,7 +1248,7 @@
         // Calculate shipping cost based on country
         function calculateShipping(country) {
             if (!country || country === 'US') {
-                return 15; // Domestic USA (was $5, now $25)
+                return 25; // Domestic USA (was $5, now $25)
             } else if (country === 'CA' || country === 'MX') {
                 return 45; // Canada and Mexico (was $15, now $45)
             } else {
