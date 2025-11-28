@@ -1099,7 +1099,7 @@
                     </div>
                     <div class="cart-summary-row">
                         <span>Shipping:</span>
-                        <span id="shippingCost">$15.00</span>
+                        <span id="shippingCost">$25.00</span>
                     </div>
                     <div id="shippingNote" style="text-align: center; color: #667eea; font-size: 0.9em; margin: 8px 0; display: none;"></div>
                     <div class="cart-total">
@@ -1248,7 +1248,7 @@
         // Calculate shipping cost based on country
         function calculateShipping(country) {
             if (!country || country === 'US') {
-                return 15; // Domestic USA (was $5, now $15)
+                return 15; // Domestic USA (was $5, now $25)
             } else if (country === 'CA' || country === 'MX') {
                 return 45; // Canada and Mexico (was $15, now $45)
             } else {
@@ -1345,7 +1345,7 @@
                 `;
             });
             
-            const shipping = 15; // US shipping estimate
+            const shipping = 25; // US shipping estimate
             const total = subtotal + shipping;
             
             html += `
@@ -1706,7 +1706,7 @@
                 </div>
                 <div class="faq-item">
                     <h3>Shipping Costs</h3>
-                    <p><strong>United States:</strong> $15.00<br>
+                    <p><strong>United States:</strong> $25.00<br>
                     <strong>Canada & Mexico:</strong> $45.00<br>
                     <strong>International (UK, Australia, Other):</strong> $75.00</p>
                 </div>
