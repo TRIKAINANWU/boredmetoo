@@ -2062,7 +2062,8 @@
                 formData.append('order_details', orderDetails);
                 formData.append('subtotal', subtotal.toFixed(2));
                 formData.append('shipping', shipping.toFixed(2));
-                formData.append('total', total.toFixed(2));
+                formData.append('discount', discount.toFixed(2));
+                formData.append('total', finalTotal.toFixed(2));
                 
                 // Add items with colors
                 cart.forEach((item, index) => {
@@ -2083,7 +2084,7 @@
                 if (response.ok) {
                     // Update confirmation modal
                     document.getElementById('displayOrderNumber').textContent = orderNumber;
-                    document.getElementById('finalTotal').textContent = total.toFixed(2);
+                    document.getElementById('finalTotal').textContent = finalTotal.toFixed(2);
                     document.getElementById('customerEmail').textContent = email;
                     document.getElementById('orderDetailsBox').innerHTML = `<pre style="white-space: pre-wrap; word-wrap: break-word;">${orderDetails}</pre>`;
                     
