@@ -58,6 +58,22 @@
             color: #667eea;
         }
 
+        .hamburger {
+            display: none; /* Hidden on desktop */
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
         .cart-button {
             background: rgba(102, 126, 234, 0.1);
             border: 1px solid rgba(102, 126, 234, 0.3);
@@ -742,10 +758,50 @@
             
             .navbar {
                 padding: 15px 20px;
+                position: relative;
             }
 
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                background: rgba(20, 20, 40, 0.98);
+                flex-direction: column;
+                width: 250px;
+                height: calc(100vh - 60px);
+                padding: 30px 20px;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 1.1em;
+            }
+
+            .cart-button {
+                margin: 20px 0 0 0;
+                width: 100%;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+
+            .hamburger span {
+                width: 25px;
+                height: 3px;
+                background: white;
+                border-radius: 2px;
+                transition: 0.3s;
             }
 
             .product-grid {
@@ -796,11 +852,16 @@
 <body>
     <nav class="navbar">
         <div class="logo">Bored? Me Too.</div>
-        <div class="nav-links">
-            <a href="#fidgets">Fidgets</a>
-            <a href="#toys">Toys</a>
-            <a href="#faq">FAQ</a>
-            <button class="cart-button" onclick="openCart()">
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#fidgets" onclick="closeMobileMenu()">Fidgets</a>
+            <a href="#toys" onclick="closeMobileMenu()">Toys</a>
+            <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+            <button class="cart-button" onclick="openCart(); closeMobileMenu();">
                 🛒 Cart <span class="cart-count" id="cartCount">0</span>
             </button>
         </div>
@@ -1146,7 +1207,7 @@
                 </div>
             </div>
 
-            <form id="checkoutForm">
+            <form id="checkoutForm" onsubmit="return handleCheckoutSubmit(event)">
                 <div class="form-group">
                     <label for="name">Full Name *</label>
                     <input type="text" id="name" name="name" required placeholder="John Doe">
@@ -1341,6 +1402,17 @@
     </div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu toggle functions
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
         // Initialize cart from localStorage
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let currentOrderNumber = '';
